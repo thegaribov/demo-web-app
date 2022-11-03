@@ -1,5 +1,5 @@
-﻿@using DemoApplication.Database.Models
-@model List<Flower>
+﻿@using DemoApplication.ViewModels.Home
+@model IndexViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -193,8 +193,7 @@
                 </div>
                 <div class="sec2gallery">
                     <div class="row">
-
-                        @foreach (var flower in Model)
+                        @foreach (var flower in Model.Flowers)
                         {
                             <div class="col-lg-3 col-12 ">
                                 <div class="box">
@@ -208,7 +207,6 @@
                                 </div>
                             </div>
                         }
-
                     </div>
                 </div>
             </div>
@@ -259,50 +257,20 @@
                     </div>
                     <div class="peoplegalerry">
                         <div class="row">
-                            <div class="col-lg-3">
-                                <div class="box">
-                                    <div class="ptop text-center">
-                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-1.png" alt="">
-                                    </div>
-                                    <div class="pbottom text-center">
-                                        <h4>CRYSTAL BROOKS</h4>
-                                        <span>Florist</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3 ">
-                                <div class="box">
-                                    <div class="ptop text-center">
-                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/h3-team-img-2.png" alt="">
-                                    </div>
-                                    <div class="pbottom text-center">
-                                        <h4>SHIRLEY HARRIS</h4>
-                                        <span>Manager</span>
+                            @foreach (var expert in Model.Experts)
+                            {
+                                <div class="col-lg-3">
+                                    <div class="box">
+                                        <div class="ptop text-center">
+                                            <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-1.png" alt="">
+                                        </div>
+                                        <div class="pbottom text-center">
+                                            <h4>@($"{expert.FirstName.ToUpper()} {expert.LastName.ToUpper()}")</h4>
+                                            <span>@expert.Role</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-3 ">
-                                <div class="box">
-                                    <div class="ptop text-center">
-                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-3.png" alt="">
-                                    </div>
-                                    <div class="pbottom text-center">
-                                        <h4>BEVERLY CLARK</h4>
-                                        <span>Florist</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-3">
-                                <div class="box">
-                                    <div class="ptop text-center">
-                                        <img class="img-fluid " src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-4.png" alt="">
-                                    </div>
-                                    <div class="pbottom text-center">
-                                        <h4>AMANDA WATKINS</h4>
-                                        <span>Florist</span>
-                                    </div>
-                                </div>
-                            </div>
+                            }
                         </div>
                     </div>
                 </div>

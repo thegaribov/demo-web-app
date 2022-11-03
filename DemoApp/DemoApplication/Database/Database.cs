@@ -15,5 +15,12 @@ namespace DemoApplication.Database
             new Flower("Daisy", 23),
             new Flower("Tulip", 130),
         };
+
+        public static List<Expert> Experts { get; set; } = new List<Expert>
+        {
+            new Expert("Crystal", "Brooks", "Florist"),
+            new Expert("Shirley", "Harries", "Manager"),
+            new Expert("Johny", "Deep", "Director")
+        };
     }
 }
