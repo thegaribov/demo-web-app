@@ -1,12 +1,29 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DemoApplication.Database;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers
 {
-    public class HomeController 
+    public class HomeController : Controller
     {
-        public string Index()
+
+
+
+        public ViewResult Index()
         {
-            return "Mahmood";
+            var flowers = DatabaseAccess.Flowers;
+
+            return View(flowers);
         }
+
+        public ViewResult About()
+        {
+            return View();
+        }
+
+        public ViewResult Contact()
+        {
+            return View();
+        }
+
     }
 }

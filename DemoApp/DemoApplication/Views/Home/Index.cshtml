@@ -1,0 +1,467 @@
+﻿@using DemoApplication.Database.Models
+@model List<Flower>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Lato:wght@100;300;400&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="d-flex " id="sceleton">
+                <div class="col-lg-3 col-6 ">
+                    <div class="logo ">
+                        <a href="">
+                            <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/themes/fiorello/assets/img/logo.png" alt="">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-9 d-flex justify-content-end align-items-center ">
+                    <nav class="row">
+                        <ul class="row list-unstyled">
+                            <li id="upper-menu">
+                                <a href="" class="n-home-1">HOME</a>
+                                <ul id="drop-menu">
+                                    <li class="h-items"><a href="" id="n-items">Main Home</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Grid Home</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Flower Shop</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Animated Slider</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Metro Showcase</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Caruesel Showcase</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Landing</a></li>
+                                </ul>
+                            </li>
+                            <li id="upper-menu">
+                                <a href="" class="n-home">PAGES</a>
+                                <ul id="drop-menu">
+                                    <li class="h-items"><a href="" id="n-items">About Us</a></li>
+                                    <li class="h-items"><a href="" id="n-items">FAQ Page</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Contact Us</a></li>
+                                </ul>
+                            </li>
+                            <li id="upper-menu">
+                                <a href="" class="n-home">SHOP</a>
+                            </li>
+                            <li id="upper-menu">
+                                <a href="" class="n-home">PORTFOLIO</a>
+                                <ul id="drop-menu">
+                                    <li class="h-items"><a href="" id="n-items">Standart</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Gallery</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Masonry</a></li>
+                                    <li id="plupper">
+                                        <a href="" id="n-items" class="plhome">Portfolio Layouts</a>
+                                        <ul id="pldrop">
+                                            <li class="plh-items"><a href="" id="pln-items">Two Columns</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Three Columns</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Four Columns</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Four Columns Wide</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items"> Five Columns Wide</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="plupper">
+                                        <a href="" id="n-items" class="plhome">Portfolio Single</a>
+                                        <ul id="pldrop">
+                                            <li class="plh-items"><a href="" id="pln-items">Small Images</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Small Slider</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Big Images</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Big Sliders</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Gallery</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="upper-menu">
+                                <a href="" class="n-home">BLOG</a>
+                                <ul id="drop-menu">
+                                    <li class="h-items"><a href="" id="n-items">Masonry</a></li>
+                                    <li class="h-items"><a href="" id="n-items">Standart</a></li>
+                                    <li id="plupper">
+                                        <a href="" id="n-items" class="plhome">Post Types</a>
+                                        <ul id="pldrop">
+                                            <li class="plh-items"><a href="" id="pln-items">Standart</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Gallery</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Link</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Quote</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Audio</a></li>
+                                            <li class="plh-items"><a href="" id="pln-items">Video</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li id="upper-menu">
+                                <a href="" class="n-home">ELEMENTS</a>
+                                <ul id="eldrop" class="text-right">
+                                    <li id="clupper">
+                                        <a href="" id="eln-items" class="clhome">Classic</a>
+                                        <ul id="cldrop" class="text-right">
+                                            <li class="clh-items"><a href="" id="cln-items">Accordions</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Tabs</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Buttons</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Video Butoon</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Contact Form</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="clupper">
+                                        <a href="" id="eln-items" class="clhome">Infographic</a>
+                                        <ul id="cldrop" class="text-right">
+                                            <li class="clh-items"><a href="" id="cln-items">Blog List</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Counters</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Countdown</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Google Map</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Progress Bar</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Pie Charts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="clupper">
+                                        <a href="" id="eln-items" class="clhome">Interactive</a>
+                                        <ul id="cldrop" class="text-right">
+                                            <li class="clh-items"><a href="" id="cln-items">Image Gallery</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Testimonials</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Team</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Banner</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Shop List</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Portfolio List</a></li>
+                                        </ul>
+                                    </li>
+                                    <li id="clupper">
+                                        <a href="" id="eln-items" class="clhome">Typography</a>
+                                        <ul id="cldrop" class="text-right">
+                                            <li class="clh-items"><a href="" id="cln-items">Headings</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Columns</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Section Title</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Blockquote</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Dropcaps</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Hightlight</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Separators</a></li>
+                                            <li class="clh-items"><a href="" id="cln-items">Custom Font</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <i class="fa-solid fa-magnifying-glass" id="mob"></i>
+                        <i class="fa-solid fa-bag-shopping bag" id="mob"><span class="iconspan rounded-pill ">0</span></i>
+                        <span class="navspan">CART($0)</span>
+                    </nav>
+                    <div class="burger">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <div class="section1 ">
+            <div class="container">
+                <div class="sec1gallery col-12">
+                    <div class="textimg">
+                        <h2>Send <span class="flow">flowers</span> like<br> you mean it.</h2>
+                        <p>Where flowers are our inspiration to create lasting memories. Whatever the occasion, our flowers will make it special cursus a sit amet mauris.</p>
+                        <img src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h2-sign-img.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section2 ">
+            <div class="container">
+                <div class="sec2head row ">
+                    <div class="sec2nav col-lg-9   ">
+                        <ul class="list-unstyled row ">
+                            <li><a href="">ALL</a></li>
+                            <li><a href="">CACTUSES</a></li>
+                            <li><a href="">EXOTIC</a></li>
+                            <li><a href="">GREENS</a></li>
+                            <li><a href="">POPULAR</a></li>
+                            <li><a href="">VARIOUS</a></li>
+                            <li><a href="">WINTER</a></li>
+                        </ul>
+                    </div>
+                    <div class="cato col-9">
+                        <a class="nav-link dropdown-toggle  " href="">CATEGORIES</a>
+                    </div>
+                    <div class="sec2filter col-3 text-right">
+                        <a class="nav-link dropdown-toggle" href="">FILTER</a>
+                    </div>
+                </div>
+                <div class="sec2gallery">
+                    <div class="row">
+
+                        @foreach (var flower in Model)
+                        {
+                            <div class="col-lg-3 col-12 ">
+                                <div class="box">
+                                    <div class="ctop">
+                                        <img class="img-fluid" src="~/images/shop-14-img.jpg" alt="">
+                                    </div>
+                                    <div class="cbottom ">
+                                        <h4>@flower.Name</h4>
+                                        <span>$@flower.Price</span>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section3">
+            <div class="container">
+                <div class="videogallery row">
+
+                    <div class="left col-lg-6">
+                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-video-img.jpg" alt="">
+                        <span><i class="fa-solid fa-caret-right"></i></span>
+                    </div>
+                    <div class="right col-lg-6">
+                        <div class="rigalerry ml-4">
+
+                            <div class="rtop">
+                                <h2>
+                                    Suprise Your <span>Valentine!</span> <br>
+                                    Let us arrange a smile.
+                                </h2>
+                                <p>Where flowers are our inspiration to create lasting memories.<br> Whatever the occasion...</p>
+                            </div>
+                            <div class="rbottom">
+                                <div class="rbottomlove d-flex align-items-center">
+                                    <i class="fa-solid fa-heart text-danger"></i>
+                                    <p class="ml-3">Hand picked just for you.</p>
+                                </div>
+                                <div class="rbottomlove d-flex align-items-center">
+                                    <i class="fa-solid fa-heart text-danger"></i>
+                                    <p class="ml-3">Unique flower arrangements</p>
+                                </div>
+                                <div class="rbottomlove d-flex align-items-center ">
+                                    <i class="fa-solid fa-heart text-danger"></i>
+                                    <p class="ml-3">Best way to say you care.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section4">
+            <div class="container">
+                <div class="people">
+                    <div class="peoplehead text-center">
+                        <h2>Flower Experts</h2>
+                        <p> A perfect blend of creativity, energy, communication, happiness and love. Let us<br> arrange a smile for you.</p>
+                    </div>
+                    <div class="peoplegalerry">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <div class="box">
+                                    <div class="ptop text-center">
+                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-1.png" alt="">
+                                    </div>
+                                    <div class="pbottom text-center">
+                                        <h4>CRYSTAL BROOKS</h4>
+                                        <span>Florist</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 ">
+                                <div class="box">
+                                    <div class="ptop text-center">
+                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/h3-team-img-2.png" alt="">
+                                    </div>
+                                    <div class="pbottom text-center">
+                                        <h4>SHIRLEY HARRIS</h4>
+                                        <span>Manager</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 ">
+                                <div class="box">
+                                    <div class="ptop text-center">
+                                        <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-3.png" alt="">
+                                    </div>
+                                    <div class="pbottom text-center">
+                                        <h4>BEVERLY CLARK</h4>
+                                        <span>Florist</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <div class="box">
+                                    <div class="ptop text-center">
+                                        <img class="img-fluid " src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/h3-team-img-4.png" alt="">
+                                    </div>
+                                    <div class="pbottom text-center">
+                                        <h4>AMANDA WATKINS</h4>
+                                        <span>Florist</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section5">
+            <div class="form">
+                <div class="text">
+                    <h3>Join The Colorful Bunch!</h3>
+                </div>
+                <div class="form " id="text">
+                    <input type="text" name="" id="">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="section6">
+            <div class="container">
+                <div class="sec6head text-center">
+                    <h2>From our Blog</h2>
+                    <p>A perfect blend of creativity, energy, communication, happiness and love. Let us<br> arrange a smile for you.</p>
+                </div>
+                <div class="sec6gallery">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <div class="box">
+                                <div class="ftop">
+                                    <img class="img-fluid" src=https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/blog-feature-img-1.jpg" alt="">
+                                    <span class="badge  badge-light position-absolute">27.04.2018</span>
+                                </div>
+                                <div class="fbottom text-center">
+                                    <a href=" ">Flower Power</a>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="box">
+                                <div class="ftop">
+                                    <img class="img-fluid" src=https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/blog-feature-img-3.jpg" alt="">
+                                    <span class="badge  badge-light position-absolute">27.04.2018</span>
+                                </div>
+                                <div class="fbottom text-center">
+                                    <a href=" ">Local Florists</a>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="box">
+                                <div class="ftop">
+                                    <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/05/blog-feature-img-4.jpg" alt="">
+                                    <span class="badge  badge-light position-absolute">27.04.2018</span>
+                                </div>
+                                <div class="fbottom text-center">
+                                    <a href=" ">Flower Beauty</a>
+                                    <p>Class aptent taciti sociosqu ad litora torquent per conubia nostra, per</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section7">
+            <div class="container">
+                <div class="sec7gallery text-center">
+                    <div class="sec7box">
+                        <div class="sec7top">
+                            <img class="img-fluid" src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/testimonial-img-2.png" alt="">
+
+                        </div>
+                        <div class="sec7middle">
+                            <p>Nullam dictum felis eu pede mollis pretium. Integer <br>tincidunt. Cras dapibus lingua.</p>
+                        </div>
+                        <div class="sec7bottom">
+                            <h4>ANNA BARNES</h4>
+                            <span>Florist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footgallery">
+                <div class="fottop row">
+                    <div class="col-lg-3">
+                        <div class="fotbox">
+                            <div class="fotboxtop">
+                                <h6>CUSTOMER SERVICE</h6>
+                            </div>
+                            <div class="fotboxbottom">
+                                <a href="">Help & Contact Us</a>
+                                <a href="">Returns & Refunds</a>
+                                <a href="">Online Stores</a>
+                                <a href="">Terms & Conditions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="fotbox">
+                            <div class="fotboxtop">
+                                <h6>COMPANY</h6>
+                            </div>
+                            <div class="fotboxbottom">
+                                <a href="">About Us</a>
+                                <a href="">Blog</a>
+                                <a href="">Order Tracking</a>
+                                <a href="">FAQ Page</a>
+                                <a href="">Contact Us</a>
+                                <a href="">Login</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="fotbox">
+                            <div class="fotboxtop">
+                                <h6>SOCIAL MEDIA</h6>
+                            </div>
+                            <div class="fotboxbottom">
+                                <a href="">Twitter</a>
+                                <a href="">Instagram</a>
+                                <a href="">Tumblr</a>
+                                <a href="">Pinterest</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="fotbox">
+                            <div class="fotboxtop">
+                                <h6>ARCHIVE</h6>
+                            </div>
+                            <div class="fotboxbottom">
+                                <a href="">Designer Shoes</a>
+                                <a href="">Gallery</a>
+                                <a href="">Pricing</a>
+                                <a href="">Feature Index</a>
+                                <a href="">Login</a>
+                                <a href="">Help & Support</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fotbottom row justify-content-between">
+                    <div class="sertification ">
+                        © 2018 <a href=""> Qode Interactive,</a> All Rights Reserved
+                    </div>
+                    <div class="bankcards ">
+                        <img src="https://fiorello.qodeinteractive.com/wp-content/uploads/2018/04/footer-bottom-1.png" alt="">
+                    </div>
+                    <div class="social ">
+                        <a href=""><span>INSTAGRAM</span></a>
+                        <a href=""><span>FACEBOOK</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

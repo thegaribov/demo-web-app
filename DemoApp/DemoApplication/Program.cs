@@ -9,6 +9,8 @@ namespace DemoApplication
 
             var app = builder.Build();
 
+            app.UseStaticFiles();
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller}/{action}");
