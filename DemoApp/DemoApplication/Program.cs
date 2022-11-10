@@ -13,7 +13,7 @@ namespace DemoApplication
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller}/{action}");
+                pattern: "{controller=home}/{action=index}");
 
             app.Run();
         }
