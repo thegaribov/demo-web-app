@@ -1,4 +1,7 @@
-﻿<section class="breadcrumb-section">
+﻿@using DemoApplication.Database.Models
+@model Contact
+
+<section class="breadcrumb-section">
     <h2 class="sr-only">Site Breadcrumb</h2>
     <div class="container">
         <div class="breadcrumb-contents">
@@ -63,24 +66,28 @@
                                 <div class="form-group">
                                     <label>Your Name <span class="required">*</span></label>
                                     <input name="name" type="text" id="con_name" class="form-control">
+                                    <span asp-validation-for="Name" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Your Email <span class="required">*</span></label>
                                     <input name="email" type="email" id="con_email" class="form-control">
+                                    <span asp-validation-for="Email" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Your Phone*</label>
                                     <input name="phone" type="text" id="con_phone" class="form-control">
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-lg-12">
                                 <div class="form-group">
                                     <label>Your Message</label>
                                     <textarea name="message" id="con_message" class="form-control"></textarea>
+                                    <span asp-validation-for="Message" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="col-lg-6">
