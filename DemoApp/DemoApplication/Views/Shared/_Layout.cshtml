@@ -8,9 +8,9 @@
     <title>Pustok - Book Store HTML Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Use Minified Plugins Version For Fast Page Load -->
-    <link rel="stylesheet" type="text/css" media="screen" href="~/assets/css/plugins.css" />
-    <link rel="stylesheet" type="text/css" media="screen" href="~/assets/css/main.css" />
-    <link rel="shortcut icon" type="image/x-icon" href="~/assets/image/favicon.ico">
+    <link rel="stylesheet" asp-append-version="true" type="text/css" media="screen" href="~/assets/css/plugins.css" />
+    <link rel="stylesheet" asp-append-version="true" type="text/css" media="screen" href="~/assets/css/main.css" />
+    <link rel="shortcut icon" asp-append-version="true" type="image/x-icon" href="~/assets/image/favicon.ico">
 
     @RenderSection("style", required : false)
 </head>
@@ -48,7 +48,7 @@
                                         <a href="contact.html">Blogs</a>
                                     </li>
                                     <li class="menu-item">
-                                        <a href="contact.html">Contact</a>
+                                        <a asp-controller="home" asp-action="contact">Contact</a>
                                     </li>
                                 </ul>
                             </div>
@@ -379,9 +379,9 @@
         </div>
     </footer>
 
-    <script src="~/assets/js/plugins.js"></script>
-    <script src="~/assets/js/ajax-mail.js"></script>
-    <script src="~/assets/js/custom.js"></script>
+    <script src="~/assets/js/plugins.js" asp-append-version="true"></script>
+    <script src="~/assets/js/ajax-mail.js" asp-append-version="true"></script>
+    <script src="~/assets/js/custom.js" asp-append-version="true"></script>
 
     @RenderSection("script", required : false)
 </body>

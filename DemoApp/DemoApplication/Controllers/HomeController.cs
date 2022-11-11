@@ -6,20 +6,35 @@ namespace DemoApplication.Controllers
 {
     public class HomeController : Controller
     {
-        public ViewResult Index()
+        public ActionResult Index()
         {
             return View();
         }
 
-        public ViewResult About()
+        [HttpGet]
+        public ActionResult Contact() 
         {
             return View();
         }
 
-        public ViewResult Contact()
+        [HttpPost]
+        public ActionResult Contact([FromForm] Contact contact)
         {
-            return View();
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
+
+            contact.Id = TablePkAutoincrement.ContactCounter;
+            DatabaseAccess.Contacts.Add(contact);
+
+            return RedirectToAction("contacts");
         }
 
+        [HttpGet]
+        public List<Contact> Contacts()
+        {
+            return DatabaseAccess.Contacts;
+        }
     }
 }
