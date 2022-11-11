@@ -1,13 +1,15 @@
 ﻿namespace DemoApplication.Database.Models
 {
-    public class Flower
+    public class Book
     {
-        public Flower(string name, decimal price)
+        public Book(int id, string name, decimal price)
         {
+            Id = id;
             Name = name;
             Price = price;
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
     }
