@@ -1,5 +1,6 @@
 ﻿using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using DemoApplication.ViewModels.Home.Contact;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers
@@ -12,23 +13,30 @@ namespace DemoApplication.Controllers
         }
 
         [HttpGet]
-        public ActionResult Contact() 
+        public ActionResult Contact()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult Contact([FromForm] Contact contact)
+        public ActionResult Contact([FromForm] CreateViewModel contactViewModel)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            contact.Id = TablePkAutoincrement.ContactCounter;
-            DatabaseAccess.Contacts.Add(contact);
+            DatabaseAccess.Contacts.Add(new Contact
+            { 
+                Id = TablePkAutoincrement.ContactCounter,
+                Name = contactViewModel.Name,
+                Email = contactViewModel.Email,
+                Message = contactViewModel.Message,
+                Phone = contactViewModel.PhoneNumber,
+                CreatedAt = DateTime.Now
+            });
 
-            return RedirectToAction("contacts");
+            return RedirectToAction(nameof(Contacts));
         }
 
         [HttpGet]
