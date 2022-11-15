@@ -12,7 +12,11 @@ namespace DemoApplication.Controllers
         [HttpGet]
         public ActionResult List()
         {
-            return View();
+            var model = DatabaseAccess.Books
+                .Select(b => new ListItemViewModel(b.Title, b.Price, b.CreatedAt))
+                .ToList();
+
+            return View(model);
         }
 
         [HttpGet]

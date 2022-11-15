@@ -1,0 +1,22 @@
+﻿@model List<ListItemViewModel>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Title</th>
+            <th scope="col">Price</th>
+            <th scope="col">CreatedAt</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <th scope="row">@book.Title</th>
+                <td>@book.Price</td>
+                <td>@book.CreatedAt</td>
+            </tr>
+        }
+    </tbody>
+</table>
