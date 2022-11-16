@@ -1,0 +1,27 @@
+﻿@model DetailsViewModel
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-controller="book" asp-action="list" target="_blank" class="btn btn-secondary">Books</a>
+        </div>
+    </div>
+    <form>
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control" readonly>
+        </div>
+        <div class="form-check">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control" readonly>
+        </div>
+        <div class="form-group">
+            <label asp-for="CreatedAt"></label>
+            <input asp-for="CreatedAt" class="form-control" readonly>
+        </div>
+    </form>
+</div>

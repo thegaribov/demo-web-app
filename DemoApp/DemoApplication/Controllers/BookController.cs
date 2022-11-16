@@ -29,8 +29,8 @@ namespace DemoApplication.Controllers
                 return NotFound();
             }
 
-
-            return View();
+            var model = new DetailsViewModel(book.Title, book.Author, book.Price, book.CreatedAt);
+            return View(model);
         }
 
         #endregion
