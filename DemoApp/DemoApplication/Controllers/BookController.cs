@@ -5,23 +5,31 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers
 {
+    [Route("book")]
     public class BookController : Controller
     {
         #region Read
 
-        [HttpGet]
+        [HttpGet("list", Name = "book-list")]
         public ActionResult List()
         {
             var model = DatabaseAccess.Books
-                .Select(b => new ListItemViewModel(b.Title, b.Price, b.CreatedAt))
+                .Select(b => new ListItemViewModel(b.Id, b.Title, b.Price, b.CreatedAt))
                 .ToList();
 
             return View(model);
         }
 
-        [HttpGet]
-        public ActionResult Details()
+        [HttpGet("detail/{id}", Name = "book-details")]
+        public ActionResult Details([FromRoute] int id)
         {
+            var book = DatabaseAccess.Books.Where(b => b.Id == id).FirstOrDefault();
+            if (book == null)
+            {
+                return NotFound();
+            }
+
+
             return View();
         }
 
@@ -29,16 +37,16 @@ namespace DemoApplication.Controllers
 
         #region Add
 
-        [HttpGet]
+        [HttpGet("add", Name = "book-add")]
         public ActionResult Add()
         {
             return View();
         }
 
-        [HttpPost]
+        [HttpPost("add", Name = "book-add")]
         public ActionResult Add(AddViewModel model)
         {
-            if (!ModelState.IsValid )
+            if (!ModelState.IsValid)
             {
                 return View(model);
             }
@@ -59,14 +67,14 @@ namespace DemoApplication.Controllers
 
         #region Update
 
-        [HttpGet]
+        [HttpGet("update", Name = "book-update")]
         public ActionResult Update()
         {
             return View();
         }
 
-        [HttpPost]
-        public ActionResult Update(UpdateViewModel  model)
+        [HttpGet("update", Name = "book-update")]
+        public ActionResult Update(UpdateViewModel model)
         {
             return View();
         }
@@ -76,16 +84,26 @@ namespace DemoApplication.Controllers
 
         #region Delete
 
-        [HttpPost]
+        [HttpGet("delete", Name = "book-delete-bulk")]
         public ActionResult Delete()
         {
-            return View();
+            DatabaseAccess.Books.Clear();
+
+            return RedirectToAction(nameof(List));
         }
 
-        [HttpPost]
+        [HttpGet("delete/{id}", Name = "book-delete-individual")]
         public ActionResult Delete(int id)
         {
-            return View();
+            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
+            if (book is null)
+            {
+                return NotFound();
+            }
+
+            DatabaseAccess.Books.Remove(book);
+
+            return RedirectToAction(nameof(List));
         }
 
         #endregion

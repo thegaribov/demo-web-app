@@ -1,22 +1,37 @@
 ﻿@model List<ListItemViewModel>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Price</th>
-            <th scope="col">CreatedAt</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var book in Model)
-        {
-            <tr>
-                <th scope="row">@book.Title</th>
-                <td>@book.Price</td>
-                <td>@book.CreatedAt</td>
-            </tr>
-        }
-    </tbody>
-</table>
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-controller="book" asp-action="add" target="_blank" class="btn btn-secondary">Add new book</a>
+            <a asp-route="book-delete-bulk" class="btn btn-danger">Bulk delete</a>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Title</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col"></th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var book in Model)
+                {
+                    <tr>
+                        <th scope="row">@book.Title</th>
+                        <td>@book.Price</td>
+                        <td>@book.CreatedAt</td>
+                        <td class="d-flex justify-content-between">
+                            <a asp-route="book-details" asp-route-id="@book.Id" class="col-5 btn btn-primary">Details</a>
+                            <a asp-route="book-delete-individual" asp-route-id="@book.Id" class="col-5 btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
