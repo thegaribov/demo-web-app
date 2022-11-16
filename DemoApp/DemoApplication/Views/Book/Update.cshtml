@@ -1,0 +1,25 @@
+﻿@model UpdateViewModel
+
+<div class="container">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-controller="book" asp-action="list" target="_blank" class="btn btn-secondary">Books</a>
+        </div>
+    </div>
+    <form method="POST" asp-controller="book" asp-action="update" >
+        <input asp-for="Id" type="hidden" />
+        <div class="form-group">
+            <label asp-for="Title"></label>
+            <input asp-for="Title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label asp-for="Author"></label>
+            <input asp-for="Author" class="form-control">
+        </div>
+        <div class="form-check">
+            <label asp-for="Price"></label>
+            <input asp-for="Price" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>

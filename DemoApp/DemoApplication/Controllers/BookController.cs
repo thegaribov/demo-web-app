@@ -2,6 +2,7 @@
 using DemoApplication.Database.Models;
 using DemoApplication.ViewModels.Book;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 
 namespace DemoApplication.Controllers
 {
@@ -67,16 +68,37 @@ namespace DemoApplication.Controllers
 
         #region Update
 
-        [HttpGet("update", Name = "book-update")]
-        public ActionResult Update()
+        [HttpGet("update/{id}", Name = "book-update-id")]
+        public ActionResult Update(int id)
         {
-            return View();
+            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
+            if (book is null)
+            {
+                return NotFound();
+            }
+
+            return View(new UpdateViewModel { Id = book.Id, Title = book.Title, Author = book.Author, Price = book.Price });
         }
 
-        [HttpGet("update", Name = "book-update")]
+        [HttpPost("update", Name = "book-update")]
         public ActionResult Update(UpdateViewModel model)
         {
-            return View();
+            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == model.Id);
+            if (book is null)
+            {
+                return NotFound();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            book.Title = model.Title;
+            book.Author = model.Author;
+            book.Price = model.Price.Value;
+
+            return RedirectToAction(nameof(List));
         }
 
 
@@ -109,3 +131,4 @@ namespace DemoApplication.Controllers
         #endregion
     }
 }
+

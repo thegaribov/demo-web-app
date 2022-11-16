@@ -15,7 +15,6 @@
                     <th scope="col">Price</th>
                     <th scope="col">CreatedAt</th>
                     <th scope="col"></th>
-                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -26,8 +25,9 @@
                         <td>@book.Price</td>
                         <td>@book.CreatedAt</td>
                         <td class="d-flex justify-content-between">
-                            <a asp-route="book-details" asp-route-id="@book.Id" class="col-5 btn btn-primary">Details</a>
-                            <a asp-route="book-delete-individual" asp-route-id="@book.Id" class="col-5 btn btn-danger">Delete</a>
+                            <a asp-route="book-details" asp-route-id="@book.Id" class="col-3 btn btn-primary">Details</a>
+                            <a asp-route="book-update-id" asp-route-id="@book.Id" class="col-3 btn btn-secondary">Update</a>
+                            <a asp-route="book-delete-individual" asp-route-id="@book.Id" class="col-3 btn btn-danger">Delete</a>
                         </td>
                     </tr>
                 }
