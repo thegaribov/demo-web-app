@@ -1,4 +1,4 @@
-﻿@model UpdateViewModel
+﻿@model UpdateResponseViewModel
 
 <div class="container">
     <div class="row justify-content-end">
@@ -6,8 +6,7 @@
             <a asp-controller="book" asp-action="list" target="_blank" class="btn btn-secondary">Books</a>
         </div>
     </div>
-    <form method="POST" asp-controller="book" asp-action="update" >
-        <input asp-for="Id" type="hidden" />
+    <form method="POST" asp-route="book-update" asp-route-id="@Model.Id">
         <div class="form-group">
             <label asp-for="Title"></label>
             <input asp-for="Title" class="form-control">

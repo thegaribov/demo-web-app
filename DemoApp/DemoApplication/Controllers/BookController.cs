@@ -68,8 +68,8 @@ namespace DemoApplication.Controllers
 
         #region Update
 
-        [HttpGet("update/{id}", Name = "book-update-id")]
-        public ActionResult Update(int id)
+        [HttpGet("update/{id}", Name = "book-update")]
+        public ActionResult Update([FromRoute] int id)
         {
             var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
             if (book is null)
@@ -77,13 +77,13 @@ namespace DemoApplication.Controllers
                 return NotFound();
             }
 
-            return View(new UpdateViewModel { Id = book.Id, Title = book.Title, Author = book.Author, Price = book.Price });
+            return View(new UpdateResponseViewModel { Id = book.Id, Title = book.Title, Author = book.Author, Price = book.Price });
         }
 
-        [HttpPost("update", Name = "book-update")]
-        public ActionResult Update(UpdateViewModel model)
+        [HttpPost("update/{id}", Name = "book-update")]
+        public ActionResult Update([FromRoute] int id, [FromForm] UpdateRequestViewModel model)
         {
-            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == model.Id);
+            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
             if (book is null)
             {
                 return NotFound();

@@ -2,9 +2,8 @@
 
 namespace DemoApplication.ViewModels.Book
 {
-    public class UpdateViewModel : BaseViewModel
+    public class UpdateRequestViewModel : BaseViewModel
     {
-        public int Id { get; set; }
         
     }
 }
