@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers.Client
 {
+    [Route("home")]
     public class HomeController : Controller
     {
         private readonly DataContext _dbContext;
@@ -14,18 +15,20 @@ namespace DemoApplication.Controllers.Client
             _dbContext = dbContext;
         }
 
+        [HttpGet("~/")]
+        [HttpGet("index")]
         public ActionResult Index()
         {
             return View("~/Views/Client/Home/Index.cshtml");
         }
 
-        [HttpGet]
+        [HttpGet("contact")]
         public ActionResult Contact()
         {
             return View("~/Views/Client/Home/Contact.cshtml");
         }
 
-        [HttpPost]
+        [HttpPost("contact")]
         public ActionResult Contact([FromForm] CreateViewModel contactViewModel)
         {
             if (!ModelState.IsValid)

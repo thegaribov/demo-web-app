@@ -1,390 +1,1123 @@
-﻿<!DOCTYPE html>
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+<!DOCTYPE html>
 <html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Metrica - Admin & Dashboard Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+        <meta content="" name="author" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="~/admin/assets/images/favicon.ico" asp-append-version="true">
 
-<head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Pustok - Book Store HTML Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Use Minified Plugins Version For Fast Page Load -->
-    <link rel="stylesheet" asp-append-version="true" type="text/css" media="screen" href="~/client/assets/css/plugins.css" />
-    <link rel="stylesheet" asp-append-version="true" type="text/css" media="screen" href="~/client/assets/css/main.css" />
-    <link rel="shortcut icon" asp-append-version="true" type="image/x-icon" href="~/client/assets/image/favicon.ico">
+        <!-- Plugin css -->
+        @RenderSection("plugin_styles", required: false)
 
-    @RenderSection("style", required : false)
-</head>
+        <!-- App css -->
+        <link href="~/admin/assets/css/bootstrap.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+        <link href="~/admin/assets/css/icons.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
+        <link href="~/admin/assets/css/app.min.css" rel="stylesheet" type="text/css" asp-append-version="true" />
 
-<body>
-    <div class="site-wrapper" id="top">
-        <!--=================================
-                    Navbar
-        ===================================== -->
+        <!-- Custom css -->
+        @RenderSection("styles", required: false)
+    </head>
 
-        <div class="site-header d-none d-lg-block">
-            <div class="header-middle pt--10 pb--10">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3 ">
-                            <a asp-controller="home" asp-action="index" class="site-brand">
-                                <img src="~/client/assets/image/logo.png" alt="">
+    <body id="body">
+        <!-- leftbar-tab-menu -->
+        <div class="leftbar-tab-menu">
+            <div class="main-icon-menu">
+                <a href="index.html" class="logo logo-metrica d-block text-center">
+                    <span>
+                    <img src="~/admin/assets/images/logo-sm.png" alt="logo-small" class="logo-sm" asp-append-version="true">
+                    </span>
+                </a>
+                <div class="main-icon-menu-body">
+                    <div class="position-reletive h-100" data-simplebar style="overflow-x: hidden;">
+                        <ul class="nav nav-tabs" role="tablist" id="tab-menu">
+                            <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Dashboard" data-bs-trigger="hover">
+                                <a href="#MetricaDashboard" id="dashboard-tab" class="nav-link">
+                                    <i class="ti ti-smart-home menu-icon"></i>
+                                </a><!--end nav-link-->
+                            </li><!--end nav-item-->
+                            <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Apps" data-bs-trigger="hover">
+                                <a href="#MetricaApps" id="apps-tab" class="nav-link">
+                                    <i class="ti ti-apps menu-icon"></i>
+                                </a><!--end nav-link-->
+                            </li><!--end nav-item-->
+
+                            <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Uikit" data-bs-trigger="hover">
+                                <a href="#MetricaUikit" id="uikit-tab" class="nav-link">
+                                    <i class="ti ti-planet menu-icon"></i>
+                                </a><!--end nav-link-->
+                            </li><!--end nav-item-->
+
+                            <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Pages" data-bs-trigger="hover">
+                                <a href="#MetricaPages" id="pages-tab" class="nav-link">
+                                    <i class="ti ti-files menu-icon"></i>
+                                </a><!--end nav-link-->
+                            </li><!--end nav-item-->
+
+                            <li class="nav-item" data-bs-toggle="tooltip" data-bs-placement="right" title="Authentication" data-bs-trigger="hover">
+                                <a href="#MetricaAuthentication" id="authentication-tab" class="nav-link">
+                                    <i class="ti ti-shield-lock menu-icon"></i>
+                                </a><!--end nav-link-->
+                            </li><!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!--end /div-->
+                </div><!--end main-icon-menu-body-->
+                <div class="pro-metrica-end">
+                    <a href="" class="profile">
+                        <img src="~/admin/assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle thumb-sm" asp-append-version="true">
+                    </a>
+                </div><!--end pro-metrica-end-->
+            </div>
+            <!--end main-icon-menu-->
+
+            <div class="main-menu-inner">
+                <!-- LOGO -->
+                <div class="topbar-left">
+                    <a href="index.html" class="logo">
+                        <span>
+                            <img src="~/admin/assets/images/logo-dark.png" alt="logo-large" class="logo-lg logo-dark" asp-append-version="true">
+                            <img src="~/admin/assets/images/logo.png" alt="logo-large" class="logo-lg logo-light" asp-append-version="true">
+                        </span>
+                    </a><!--end logo-->
+                </div><!--end topbar-left-->
+                <!--end logo-->
+                <div class="menu-body navbar-vertical tab-content" data-simplebar>
+                    <div id="MetricaDashboard" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                         aria-labelledby="dasboard-tab">
+                        <div class="title-box">
+                            <h6 class="menu-title">Dashboard</h6>
+                        </div>
+
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a @*asp-route="@($"{Module.DashboardSegment}-Analytics-Index")"*@  class="nav-link">Analytics</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="crypto-index.html">Crypto</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="crm-index.html">CRM</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="projects-index.html">Project</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="ecommerce-index.html">Ecommerce</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="helpdesk-index.html">Helpdesk</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="hospital-index.html">Hospital</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!-- end Dashboards -->
+
+                    <div id="MetricaApps" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                         aria-labelledby="apps-tab">
+                        <div class="title-box">
+                            <h6 class="menu-title">Apps</h6>
+                        </div>
+
+                        <div class="collapse navbar-collapse" id="sidebarCollapse">
+                            <!-- Navigation -->
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarAnalytics" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarAnalytics">
+                                        Analytics
+                                    </a>
+                                    <div class="collapse " id="sidebarAnalytics">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a href="analytics-customers.html" class="nav-link ">Customers</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a href="analytics-reports.html" class="nav-link ">Reports</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarAnalytics-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarCrypto" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarCrypto">
+                                        Crypto
+                                    </a>
+                                    <div class="collapse " id="sidebarCrypto">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crypto-exchange.html">Exchange</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crypto-wallet.html">Wallet</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crypto-news.html">Crypto News</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crypto-ico.html">ICO List</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crypto-settings.html">Settings</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarCrypto-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarCRM" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarCRM">
+                                        CRM
+                                    </a>
+                                    <div class="collapse " id="sidebarCRM">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crm-contacts.html">Contacts</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crm-opportunities.html">Opportunities</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crm-leads.html">Leads</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="crm-customers.html">Customers</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarCRM-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarProjects" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarProjects">
+                                        Projects
+                                    </a>
+                                    <div class="collapse " id="sidebarProjects">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-clients.html">Clients</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-team.html">Team</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-project.html">Project</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-task.html">Task</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-kanban-board.html">Kanban Board</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-chat.html">Chat</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-users.html">Users</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="projects-create.html">Project Create</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarProjects-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarEcommerce" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarEcommerce">
+                                        Ecommerce
+                                    </a>
+                                    <div class="collapse " id="sidebarEcommerce">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-products.html">Products</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-product-list.html">Product List</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-product-detail.html">Product Detail</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-cart.html">Cart</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ecommerce-checkout.html">Checkout</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarEcommerce-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarHelpdesk" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarHelpdesk">
+                                        Helpdesk
+                                    </a>
+                                    <div class="collapse " id="sidebarHelpdesk">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="helpdesk-teckets.html">Tickets</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="helpdesk-reports.html">Reports</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="helpdesk-agents.html">Agents</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarHelpdesk-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarHospital" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarHospital">
+                                        Hospital
+                                    </a>
+                                    <div class="collapse " id="sidebarHospital">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a href="#sidebarAppointments " class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarAppointments">
+                                                    Appointments
+                                                </a>
+                                                <div class="collapse " id="sidebarAppointments">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-doctor-shedule.html">Dr. Shedule</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-appointments.html">All Appointments</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarAppointments-->
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a href="#sidebarDoctors" class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarDoctors">
+                                                    Doctors
+                                                </a>
+                                                <div class="collapse" id="sidebarDoctors">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-doctors.html">All Doctors</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-add-doctor.html">Add Doctor</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-doctor-edit.html">Doctor Edit</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-doctor-profile.html">Doctor Profile</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarDoctors-->
+                                            </li><!--end nav-item-->
+
+                                            <li class="nav-item">
+                                                <a href="#sidebarPatients" class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarPatients">
+                                                    Patients
+                                                </a>
+                                                <div class="collapse" id="sidebarPatients">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-patients.html">All Patients</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-add-patient.html">Add Patient</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-patient-edit.html">Patient Edit</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-patient-profile.html">Patient Profile</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarPatients-->
+                                            </li><!--end nav-item-->
+
+                                            <li class="nav-item">
+                                                <a href="#sidebarPayments" class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarPayments">
+                                                    Payments
+                                                </a>
+                                                <div class="collapse" id="sidebarPayments">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-payments.html">All Payments</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-payment-invoice.html">Payment Invoice</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-cashless-payments.html">Cashless Payments</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarPayments-->
+                                            </li><!--end nav-item-->
+
+                                            <li class="nav-item">
+                                                <a href="#sidebarStaff" class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarStaff">
+                                                    Staff
+                                                </a>
+                                                <div class="collapse" id="sidebarStaff">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-staff.html">All Staff</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-add-member.html">Add Member</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-edit-member.html">Edit Member</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-member-profile.html">Member Profile</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-salary.html">Staff Salary</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarStaff-->
+                                            </li><!--end nav-item-->
+
+                                            <li class="nav-item">
+                                                <a href="#sidebarGeneral" class="nav-link" data-bs-toggle="collapse"
+                                                   role="button" aria-expanded="false" aria-controls="sidebarGeneral">
+                                                    General
+                                                </a>
+                                                <div class="collapse" id="sidebarGeneral">
+                                                    <ul class="nav flex-column">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-all-rooms.html">Room Allotments</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-expenses.html">Expenses Report</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-departments.html">Departments</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-insurance-company.html">Insurance Co.</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-events.html">Events</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-leaves.html">Leaves</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-holidays.html">Holidays</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-attendance.html">Attendance</a>
+                                                        </li><!--end nav-item-->
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="hospital-chat.html">Chat</a>
+                                                        </li><!--end nav-item-->
+                                                    </ul><!--end nav-->
+                                                </div><!--end sidebarGeneral-->
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarHospital-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarEmail" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarEmail">
+                                        Email
+                                    </a>
+                                    <div class="collapse " id="sidebarEmail">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="apps-email-inbox.html">Inbox</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="apps-email-read.html">Read Email</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarEmail-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="apps-chat.html">Chat</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="apps-contact-list.html">Contact List</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="apps-calendar.html">Calendar</a>
+                                </li><!--end nav-item-->
+                                <li class="nav-item">
+                                    <a class="nav-link" href="apps-invoice.html">Invoice</a>
+                                </li><!--end nav-item-->
+                            </ul><!--end navbar-nav--->
+                        </div><!--end sidebarCollapse-->
+                    </div><!-- end Crypto -->
+
+                    <div id="MetricaUikit" class="main-icon-menu-pane  tab-pane" role="tabpanel"
+                         aria-labelledby="uikit-tab">
+                        <div class="title-box">
+                            <h6 class="menu-title">UI Kit</h6>
+                        </div>
+                        <div class="collapse navbar-collapse" id="sidebarCollapse_2">
+                            <!-- Navigation -->
+                            <ul class="navbar-nav">
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarElements" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarElements">
+                                        UI Elements
+                                    </a>
+                                    <div class="collapse " id="sidebarElements">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-alerts.html">Alerts</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-avatar.html">Avatar</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-buttons.html">Buttons</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-badges.html">Badges</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-cards.html">Cards</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-carousels.html">Carousels</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-dropdowns.html">Dropdowns</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-grids.html">Grids</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-images.html">Images</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-list.html">List</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-modals.html">Modals</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-navs.html">Navs</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-navbar.html">Navbar</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-paginations.html">Paginations</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-popover-tooltips.html">Popover & Tooltips</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-progress.html">Progress</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-spinners.html">Spinners</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-tabs-accordions.html">Tabs & Accordions</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-typography.html">Typography</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="ui-videos.html">Videos</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarElements-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarAdvancedUI" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarAdvancedUI">
+                                        Advanced UI
+                                    </a>
+                                    <div class="collapse " id="sidebarAdvancedUI">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-animation.html">Animation</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-clipboard.html">Clip Board</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-dragula.html">Dragula</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-files.html">File Manager</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-highlight.html">Highlight</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-rangeslider.html">Range Slider</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-ratings.html">Ratings</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-ribbons.html">Ribbons</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-sweetalerts.html">Sweet Alerts</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="advanced-toasts.html">Toasts</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarAdvancedUI-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarForms" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarForms">
+                                        Forms
+                                    </a>
+                                    <div class="collapse " id="sidebarForms">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-elements.html">Basic Elements</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-advanced.html">Advance Elements</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-validation.html">Validation</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-wizard.html">Wizard</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-editors.html">Editors</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-uploads.html">File Upload</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="forms-img-crop.html">Image Crop</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarForms-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarCharts" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarCharts">
+                                        Charts
+                                    </a>
+                                    <div class="collapse " id="sidebarCharts">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="charts-apex.html">Apex</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="charts-justgage.html">JustGage</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="charts-chartjs.html">Chartjs</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="charts-toast-ui.html">Toast</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarCharts-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarTables" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarTables">
+                                        Tables
+                                    </a>
+                                    <div class="collapse " id="sidebarTables">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="tables-basic.html">Basic</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="tables-datatable.html">Datatables</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="tables-editable.html">Editable</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarTables-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarIcons" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarIcons">
+                                        Icons
+                                    </a>
+                                    <div class="collapse " id="sidebarIcons">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="icons-materialdesign.html">Material Design</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="icons-fontawesome.html">Font awesome</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="icons-tabler.html">Tabler</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="icons-feather.html">Feather</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarIcons-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarMaps" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarMaps">
+                                        Maps
+                                    </a>
+                                    <div class="collapse " id="sidebarMaps">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="maps-google.html">Google Maps</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="maps-leaflet.html">Leaflet Maps</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="maps-vector.html">Vector Maps</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarMaps-->
+                                </li><!--end nav-item-->
+
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#sidebarEmailTemplates" data-bs-toggle="collapse" role="button"
+                                       aria-expanded="false" aria-controls="sidebarEmailTemplates">
+                                        Email Templates
+                                    </a>
+                                    <div class="collapse " id="sidebarEmailTemplates">
+                                        <ul class="nav flex-column">
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="email-templates-basic.html">Basic Action Email</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="email-templates-alert.html">Alert Email</a>
+                                            </li><!--end nav-item-->
+                                            <li class="nav-item">
+                                                <a class="nav-link" href="email-templates-billing.html">Billing Email</a>
+                                            </li><!--end nav-item-->
+                                        </ul><!--end nav-->
+                                    </div><!--end sidebarEmailTemplates-->
+                                </li><!--end nav-item-->
+                            </ul><!--end navbar-nav--->
+                        </div><!--end sidebarCollapse_2-->
+                    </div><!-- end Others -->
+
+                    <div id="MetricaPages" class="main-icon-menu-pane tab-pane" role="tabpanel" aria-labelledby="pages-tab">
+                        <div class="title-box">
+                            <h6 class="menu-title">Pages</h6>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-profile.html">Profile</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-tour.html">Tour</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-timeline.html">Timeline</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-treeview.html">Treeview</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-starter.html">Starter Page</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-pricing.html">Pricing</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-blogs.html">Blogs</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-faq.html">FAQs</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="pages-gallery.html">Gallery</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!-- end Pages -->
+
+                    <div id="MetricaAuthentication" class="main-icon-menu-pane tab-pane" role="tabpanel"
+                         aria-labelledby="authentication-tab">
+                        <div class="title-box">
+                            <h6 class="menu-title">Authentication</h6>
+                        </div>
+                        <ul class="nav flex-column">
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-login.html">Log in</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-login-alt.html">Log in alt</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-register.html">Register</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-register-alt.html">Register-alt</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-recover-pw.html">Re-Password</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-recover-pw-alt.html">Re-Password-alt</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-lock-screen.html">Lock Screen</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-lock-screen-alt.html">Lock Screen-alt</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-404.html">Error 404</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-404-alt.html">Error 404-alt</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-500.html">Error 500</a>
+                            </li><!--end nav-item-->
+                            <li class="nav-item">
+                                <a class="nav-link" href="auth-500-alt.html">Error 500-alt</a>
+                            </li><!--end nav-item-->
+                        </ul><!--end nav-->
+                    </div><!-- end Authentication-->
+                </div>
+                <!--end menu-body-->
+            </div><!-- end main-menu-inner-->
+        </div>
+        <!-- end leftbar-tab-menu-->
+        <!-- Top Bar Start -->
+        <!-- Top Bar Start -->
+        <div class="topbar">
+            <!-- Navbar -->
+            <nav class="navbar-custom" id="navbar-custom">
+                <ul class="list-unstyled topbar-nav float-end mb-0">
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <img src="~/admin/assets/images/flags/us_flag.jpg" alt="" class="thumb-xxs rounded-circle" asp-append-version="true">
+                        </a>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#"><img src="~/admin/assets/images/flags/us_flag.jpg" alt="" height="15" class="me-2" asp-append-version="true">English</a>
+                            <a class="dropdown-item" href="#"><img src="~/admin/assets/images/flags/spain_flag.jpg" alt="" height="15" class="me-2" asp-append-version="true">Spanish</a>
+                            <a class="dropdown-item" href="#"><img src="~/admin/assets/images/flags/germany_flag.jpg" alt="" height="15" class="me-2" asp-append-version="true">German</a>
+                            <a class="dropdown-item" href="#"><img src="~/admin/assets/images/flags/french_flag.jpg" alt="" height="15" class="me-2" asp-append-version="true">French</a>
+                        </div>
+                    </li><!--end topbar-language-->
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="ti ti-mail"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+
+                            <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+                                Emails <span class="badge bg-soft-primary badge-pill">3</span>
+                            </h6>
+                            <div class="notification-menu" data-simplebar>
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="~/admin/assets/images/users/user-1.jpg" alt="" class="thumb-sm rounded-circle" asp-append-version="true">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing and industry.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">10 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="~/admin/assets/images/users/user-4.jpg" alt="" class="thumb-sm rounded-circle" asp-append-version="true">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Meeting with designers</h6>
+                                            <small class="text-muted mb-0">It is a long established fact that a reader.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">40 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="~/admin/assets/images/users/user-2.jpg" alt="" class="thumb-sm rounded-circle" asp-append-version="true">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">UX 3 Task complete.</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">1 hr ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="~/admin/assets/images/users/user-5.jpg" alt="" class="thumb-sm rounded-circle" asp-append-version="true">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                            <small class="text-muted mb-0">It is a long established fact that a reader.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 hrs ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <img src="~/admin/assets/images/users/user-3.jpg" alt="" class="thumb-sm rounded-circle" asp-append-version="true">
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Payment Successfull</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                            </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                View all <i class="fi-arrow-right"></i>
                             </a>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="header-phone ">
-                                <div class="icon">
-                                    <i class="fas fa-headphones-alt"></i>
-                                </div>
-                                <div class="text">
-                                    <p>Free Support 24/7</p>
-                                    <p class="font-weight-bold number">+01-202-555-0181</p>
-                                </div>
+                    </li>
+
+                    <li class="dropdown notification-list">
+                        <a class="nav-link dropdown-toggle arrow-none nav-icon" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <i class="ti ti-bell"></i>
+                            <span class="alert-badge"></span>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end dropdown-lg pt-0">
+
+                            <h6 class="dropdown-item-text font-15 m-0 py-3 border-bottom d-flex justify-content-between align-items-center">
+                                Notifications <span class="badge bg-soft-primary badge-pill">2</span>
+                            </h6>
+                            <div class="notification-menu" data-simplebar>
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i class="ti ti-chart-arcs"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing and industry.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">10 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i class="ti ti-device-computer-camera"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Meeting with designers</h6>
+                                            <small class="text-muted mb-0">It is a long established fact that a reader.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">40 min ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i class="ti ti-diamond"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">UX 3 Task complete.</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">1 hr ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i class="ti ti-drone"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Your order is placed</h6>
+                                            <small class="text-muted mb-0">It is a long established fact that a reader.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
+                                <!-- item-->
+                                <a href="#" class="dropdown-item py-3">
+                                    <small class="float-end text-muted ps-2">2 hrs ago</small>
+                                    <div class="media">
+                                        <div class="avatar-md bg-soft-primary">
+                                            <i class="ti ti-users"></i>
+                                        </div>
+                                        <div class="media-body align-self-center ms-2 text-truncate">
+                                            <h6 class="my-0 fw-normal text-dark">Payment Successfull</h6>
+                                            <small class="text-muted mb-0">Dummy text of the printing.</small>
+                                        </div><!--end media-body-->
+                                    </div><!--end media-->
+                                </a><!--end-item-->
                             </div>
+                            <!-- All-->
+                            <a href="javascript:void(0);" class="dropdown-item text-center text-primary">
+                                View all <i class="fi-arrow-right"></i>
+                            </a>
                         </div>
-                        <div class="col-lg-6">
-                            <div class="main-navigation flex-lg-right">
-                                <ul class="main-menu menu-right ">
-                                    <li class="menu-item">
-                                        <a href="contact.html">Blogs</a>
-                                    </li>
-                                    <li class="menu-item">
-                                        <a asp-controller="home" asp-action="contact">Contact</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="header-bottom pb--10">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-lg-3">
-                            <nav class="category-nav">
+                    </li>
+
+                    <li class="dropdown">
+                        <a class="nav-link dropdown-toggle nav-user" data-bs-toggle="dropdown" href="#" role="button"
+                           aria-haspopup="false" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                            <img src="~/admin/assets/images/users/user-4.jpg" alt="profile-user" class="rounded-circle me-2 thumb-sm" asp-append-version="true" />
                                 <div>
-                                    <a href="javascript:void(0)" class="category-trigger">
-                                        <i class="fa fa-bars"></i>Browse
-                                        categories
-                                    </a>
-                                    <ul class="category-menu">
-                                        <li class="cat-item"><a href="#">Perfomance Filters</a></li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                        <div class="col-lg-5">
-                            <div class="header-search-block">
-                                <input type="text" placeholder="Search entire store here">
-                                <button>Search</button>
-                            </div>
-                        </div>
-                        <div class="col-lg-4">
-                            <div class="main-navigation flex-lg-right">
-                                <div class="cart-widget">
-                                    <div class="login-block">
-                                        <a asp-controller="authentication" asp-action="login" class="font-weight-bold">Login</a>
-                                        <br>
-                                        <span>or</span>
-                                        <a asp-controller="authentication" asp-action="register">Register</a>
-                                    </div>
-                                    <div class="cart-block">
-                                        <div class="cart-total">
-                                            <span class="text-number">
-                                                1
-                                            </span>
-                                            <span class="text-item">
-                                                Shopping Cart
-                                            </span>
-                                            <span class="price">
-                                                £0.00
-                                                <i class="fas fa-chevron-down"></i>
-                                            </span>
-                                        </div>
-                                        <div class="cart-dropdown-block">
-                                            <div class=" single-cart-block ">
-                                                <div class="cart-product">
-                                                    <a href="product-details.html" class="image">
-                                                        <img src="~/client/assets/image/products/cart-product-1.jpg" alt="">
-                                                    </a>
-                                                    <div class="content">
-                                                        <h3 class="title">
-                                                            <a href="product-details.html">
-                                                                Kodak PIXPRO
-                                                                Astro Zoom AZ421 16 MP
-                                                            </a>
-                                                        </h3>
-                                                        <p class="price"><span class="qty">1 ×</span> £87.34</p>
-                                                        <button class="cross-btn"><i class="fas fa-times"></i></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class=" single-cart-block ">
-                                                <div class="btn-block">
-                                                    <a href="cart.html" class="btn">
-                                                        View Cart <i class="fas fa-chevron-right"></i>
-                                                    </a>
-                                                    <a href="checkout.html" class="btn btn--primary">
-                                                        Check Out <i class="fas fa-chevron-right"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <small class="d-none d-md-block font-11">Admin</small>
+                                    <span class="d-none d-md-block fw-semibold font-12">
+                                        Maria Gibson <i class="mdi mdi-chevron-down"></i>
+                                    </span>
                                 </div>
                             </div>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="#"><i class="ti ti-user font-16 me-1 align-text-bottom"></i> Profile</a>
+                            <a class="dropdown-item" href="#"><i class="ti ti-settings font-16 me-1 align-text-bottom"></i> Settings</a>
+                            <div class="dropdown-divider mb-0"></div>
+                            <a class="dropdown-item" href="#"><i class="ti ti-power font-16 me-1 align-text-bottom"></i> Logout</a>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                    </li><!--end topbar-profile-->
+                    <li class="notification-list">
+                        <a class="nav-link arrow-none nav-icon offcanvas-btn" href="#" data-bs-toggle="offcanvas" data-bs-target="#Appearance" role="button" aria-controls="Rightbar">
+                            <i class="ti ti-settings ti-spin"></i>
+                        </a>
+                    </li>
+                </ul><!--end topbar-nav-->
 
-        @RenderBody();
-
-        <!-- Modal -->
-        <div class="modal fade modal-quick-view" id="quickModal" tabindex="-1" role="dialog"
-             aria-labelledby="quickModal" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close modal-close-btn ml-auto" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="product-details-modal">
-                        <div class="row">
-                            <div class="col-lg-5">
-                                <!-- Product Details Slider Big Image-->
-                                <div class="product-details-slider sb-slick-slider arrow-type-two" data-slick-setting='{
-              "slidesToShow": 1,
-              "arrows": false,
-              "fade": true,
-              "draggable": false,
-              "swipe": false,
-              "asNavFor": ".product-slider-nav"
-              }'>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-1.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-2.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-3.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-4.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-5.jpg" alt="">
-                                    </div>
-                                </div>
-                                <!-- Product Details Slider Nav -->
-                                <div class="mt--30 product-slider-nav sb-slick-slider arrow-type-two"
-                                     data-slick-setting='{
-            "infinite":true,
-              "autoplay": true,
-              "autoplaySpeed": 8000,
-              "slidesToShow": 4,
-              "arrows": true,
-              "prevArrow":{"buttonClass": "slick-prev","iconClass":"fa fa-chevron-left"},
-              "nextArrow":{"buttonClass": "slick-next","iconClass":"fa fa-chevron-right"},
-              "asNavFor": ".product-details-slider",
-              "focusOnSelect": true
-              }'>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-1.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-2.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-3.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-4.jpg" alt="">
-                                    </div>
-                                    <div class="single-slide">
-                                        <img src="~/client/assets/image/products/product-details-5.jpg" alt="">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-lg-7 mt--30 mt-lg--30">
-                                <div class="product-details-info pl-lg--30 ">
-                                    <p class="tag-block">Tags: <a href="#">Movado</a>, <a href="#">Omega</a></p>
-                                    <h3 class="product-title">Beats EP Wired On-Ear Headphone-Black</h3>
-                                    <ul class="list-unstyled">
-                                        <li>Ex Tax: <span class="list-value"> £60.24</span></li>
-                                        <li>Brands: <a href="#" class="list-value font-weight-bold"> Canon</a></li>
-                                        <li>Product Code: <span class="list-value"> model1</span></li>
-                                        <li>Reward Points: <span class="list-value"> 200</span></li>
-                                        <li>Availability: <span class="list-value"> In Stock</span></li>
-                                    </ul>
-                                    <div class="price-block">
-                                        <span class="price-new">£73.79</span>
-                                        <del class="price-old">£91.86</del>
-                                    </div>
-                                    <div class="rating-widget">
-                                        <div class="rating-block">
-                                            <span class="fas fa-star star_on"></span>
-                                            <span class="fas fa-star star_on"></span>
-                                            <span class="fas fa-star star_on"></span>
-                                            <span class="fas fa-star star_on"></span>
-                                            <span class="fas fa-star "></span>
-                                        </div>
-                                        <div class="review-widget">
-                                            <a href="#">(1 Reviews)</a> <span>|</span>
-                                            <a href="#">Write a review</a>
-                                        </div>
-                                    </div>
-                                    <article class="product-details-article">
-                                        <h4 class="sr-only">Product Summery</h4>
-                                        <p>
-                                            Long printed dress with thin adjustable straps. V-neckline and wiring under
-                                            the Dust with ruffles
-                                            at the bottom
-                                            of the
-                                            dress.
-                                        </p>
-                                    </article>
-                                    <div class="add-to-cart-row">
-                                        <div class="count-input-block">
-                                            <span class="widget-label">Qty</span>
-                                            <input type="number" class="form-control text-center" value="1">
-                                        </div>
-                                        <div class="add-cart-btn">
-                                            <a href="#" class="btn btn-outlined--primary">
-                                                <span class="plus-icon">+</span>Add to Cart
-                                            </a>
-                                        </div>
-                                    </div>
-                                    <div class="compare-wishlist-row">
-                                        <a href="#" class="add-link"><i class="fas fa-heart"></i>Add to Wish List</a>
-                                        <a href="#" class="add-link"><i class="fas fa-random"></i>Add to Compare</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <div class="widget-social-share">
-                            <span class="widget-label">Share:</span>
-                            <div class="modal-social-share">
-                                <a href="#" class="single-icon"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" class="single-icon"><i class="fab fa-twitter"></i></a>
-                                <a href="#" class="single-icon"><i class="fab fa-youtube"></i></a>
-                                <a href="#" class="single-icon"><i class="fab fa-google-plus-g"></i></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <!--=================================
-                Footer Area
-    ===================================== -->
-    <footer class="site-footer">
-        <div class="container">
-            <div class="row justify-content-between  section-padding">
-                <div class=" col-xl-3 col-lg-4 col-sm-6">
-                    <div class="single-footer pb--40">
-                        <div class="brand-footer footer-title">
-                            <img src="~/client/assets/image/logo--footer.png" alt="">
-                        </div>
-                        <div class="footer-contact">
-                            <p>
-                                <span class="label">Address:</span><span class="text">
-                                    Example Street 98, HH2 BacHa, New
-                                    York,
-                                    USA
-                                </span>
-                            </p>
-                            <p><span class="label">Phone:</span><span class="text">+18088 234 5678</span></p>
-                            <p><span class="label">Email:</span><span class="text">suport@hastech.com</span></p>
-                        </div>
-                    </div>
-                </div>
-                <div class=" col-xl-3 col-lg-2 col-sm-6">
-                    <div class="single-footer pb--40">
-                        <div class="footer-title">
-                            <h3>Information</h3>
-                        </div>
-                        <ul class="footer-list normal-list">
-                            <li><a href="#">Prices drop</a></li>
-                            <li><a href="#">New products</a></li>
-                            <li><a href="#">Best sales</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Sitemap</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class=" col-xl-3 col-lg-2 col-sm-6">
-                    <div class="single-footer pb--40">
-                        <div class="footer-title">
-                            <h3>Extras</h3>
-                        </div>
-                        <ul class="footer-list normal-list">
-                            <li><a href="#">Delivery</a></li>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">Stores</a></li>
-                            <li><a href="#">Contact us</a></li>
-                            <li><a href="#">Sitemap</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <div class=" col-xl-3 col-lg-4 col-sm-6">
-                    <div class="footer-title">
-                        <h3>Newsletter Subscribe</h3>
-                    </div>
-                    <div class="newsletter-form mb--30">
-                        <form action="https://demo.hasthemes.com/pustok-preview/pustok/php/mail.php">
-                            <input type="email" class="form-control" placeholder="Enter Your Email Address Here...">
-                            <button class="btn btn--primary w-100">Subscribe</button>
+                <ul class="list-unstyled topbar-nav mb-0">
+                    <li>
+                        <button class="nav-link button-menu-mobile nav-icon" id="togglemenu">
+                            <i class="ti ti-menu-2"></i>
+                        </button>
+                    </li>
+                    <li class="hide-phone app-search">
+                        <form role="search" action="#" method="get">
+                            <input type="search" name="search" class="form-control top-search mb-0" placeholder="Type text...">
+                            <button type="submit"><i class="ti ti-search"></i></button>
                         </form>
+                    </li>
+                </ul>
+            </nav>
+            <!-- end navbar-->
+        </div>
+        <!-- Top Bar End -->
+        <!-- Top Bar End -->
+
+        <div class="page-wrapper">
+
+            <!-- Page Content-->
+            <div class="page-content-tab">
+                <div class="container-fluid">
+
+                @RenderBody()
+
+                </div><!-- container -->
+                <!--Start Rightbar-->
+                <!--Start Rightbar/offcanvas-->
+                <div class="offcanvas offcanvas-end" tabindex="-1" id="Appearance" aria-labelledby="AppearanceLabel">
+                    <div class="offcanvas-header border-bottom">
+                        <h5 class="m-0 font-14" id="AppearanceLabel">Appearance</h5>
+                        <button type="button" class="btn-close text-reset p-0 m-0 align-self-center" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                     </div>
-                    <div class="social-block">
-                        <h3 class="title">STAY CONNECTED</h3>
-                        <ul class="social-list list-inline">
-                            <li class="single-social facebook">
-                                <a href="#"><i class="ion ion-social-facebook"></i></a>
-                            </li>
-                            <li class="single-social twitter"><a href="#"><i class="ion ion-social-twitter"></i></a></li>
-                            <li class="single-social google">
-                                <a href="#">
-                                    <i class="ion ion-social-googleplus-outline"></i>
-                                </a>
-                            </li>
-                            <li class="single-social youtube"><a href="#"><i class="ion ion-social-youtube"></i></a></li>
-                        </ul>
-                    </div>
+                    <div class="offcanvas-body">
+                        <h6>Account Settings</h6>
+                        <div class="p-2 text-start mt-3">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch1">
+                                <label class="form-check-label" for="settings-switch1">Auto updates</label>
+                            </div><!--end form-switch-->
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch2" checked>
+                                <label class="form-check-label" for="settings-switch2">Location Permission</label>
+                            </div><!--end form-switch-->
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="settings-switch3">
+                                <label class="form-check-label" for="settings-switch3">Show offline Contacts</label>
+                            </div><!--end form-switch-->
+                        </div><!--end /div-->
+                        <h6>General Settings</h6>
+                        <div class="p-2 text-start mt-3">
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch4">
+                                <label class="form-check-label" for="settings-switch4">Show me Online</label>
+                            </div><!--end form-switch-->
+                            <div class="form-check form-switch mb-2">
+                                <input class="form-check-input" type="checkbox" id="settings-switch5" checked>
+                                <label class="form-check-label" for="settings-switch5">Status visible to all</label>
+                            </div><!--end form-switch-->
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="settings-switch6">
+                                <label class="form-check-label" for="settings-switch6">Notifications Popup</label>
+                            </div><!--end form-switch-->
+                        </div><!--end /div-->
+                    </div><!--end offcanvas-body-->
                 </div>
+                <!--end Rightbar/offcanvas-->
+                <!--end Rightbar-->
+                <!--Start Footer-->
+                <!-- Footer Start -->
+                <footer class="footer text-center text-sm-start">
+                    &copy; <script>
+                               document.write(new Date().getFullYear())
+                    </script> Metrica <span class="text-muted d-none d-sm-inline-block float-end">
+                        Crafted with <i class="mdi mdi-heart text-danger"></i> by Mannatthemes
+                    </span>
+                </footer>
+                <!-- end Footer -->
+                <!--end footer-->
             </div>
+            <!-- end page content -->
         </div>
-        <div class="footer-bottom">
-            <div class="container">
-                <p class="copyright-heading">
-                    Suspendisse in auctor augue. Cras fermentum est ac fermentum tempor. Etiam
-                    vel
-                    magna volutpat, posuere eros
-                </p>
-                <a href="#" class="payment-block">
-                    <img src="~/client/assets/image/icon/payment.png" alt="">
-                </a>
-                <p class="copyright-text">
-                    Copyright © 2019 <a href="#" class="author">Pustok</a>. All Right Reserved.
-                    <br>
-                    Design By Pustok
-                </p>
-            </div>
-        </div>
-    </footer>
+        <!-- end page-wrapper -->
+        <!-- Javascript  -->
 
-    <script src="~/client/assets/js/plugins.js" asp-append-version="true"></script>
-    <script src="~/client/assets/js/ajax-mail.js" asp-append-version="true"></script>
-    <script src="~/client/assets/js/custom.js" asp-append-version="true"></script>
+        <!-- Plugin Js -->
+        @RenderSection("plugin_scripts", required: false)
 
-    @RenderSection("script", required : false)
-</body>
+        <!-- App js -->
+        <script src="~/admin/assets/js/app.js" asp-append-version="true"></script>
 
-
+        <!-- Custom Js -->
+        @RenderSection("scripts", required: false)
+    </body>
+    <!--end body-->
 </html>
