@@ -8,6 +8,13 @@ namespace DemoApplication.Controllers
 {
     public class AuthenticationController : Controller
     {
+        private readonly DataContext _dbContext;
+
+        public AuthenticationController(DataContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ViewResult Login()
         {
             return View();
@@ -27,12 +34,12 @@ namespace DemoApplication.Controllers
                 return View(viewModel);
             }
 
-            Database.DatabaseAccess.Users.Add(new Database.Models.User
-            {
-                Id = TablePkAutoincrement.UserCounter,
-                Email = viewModel.Email,
-                Password = viewModel.Password
-            });
+            //_dbContext.Users.Add(new Database.Models.User
+            //{
+            //    Id = TablePkAutoincrement.UserCounter,
+            //    Email = viewModel.Email,
+            //    Password = viewModel.Password
+            //});
             //add to db
 
             return View();

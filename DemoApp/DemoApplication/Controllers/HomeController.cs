@@ -7,6 +7,13 @@ namespace DemoApplication.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly DataContext _dbContext;
+
+        public HomeController(DataContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -26,9 +33,8 @@ namespace DemoApplication.Controllers
                 return View();
             }
 
-            DatabaseAccess.Contacts.Add(new Contact
+            _dbContext.Contacts.Add(new Contact
             { 
-                Id = TablePkAutoincrement.ContactCounter,
                 Name = contactViewModel.Name,
                 Email = contactViewModel.Email,
                 Message = contactViewModel.Message,
@@ -42,7 +48,7 @@ namespace DemoApplication.Controllers
         [HttpGet]
         public List<Contact> Contacts()
         {
-            return DatabaseAccess.Contacts;
+            return _dbContext.Contacts.ToList();
         }
     }
 }

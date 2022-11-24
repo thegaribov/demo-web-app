@@ -1,7 +1,9 @@
 ﻿using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.ViewModels.Book;
+using DemoApplication.ViewModels.Book.Update;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
 namespace DemoApplication.Controllers
@@ -9,12 +11,19 @@ namespace DemoApplication.Controllers
     [Route("book")]
     public class BookController : Controller
     {
+        private readonly DataContext _dbContext;
+
+        public BookController(DataContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
         #region Read
 
         [HttpGet("list", Name = "book-list")]
         public ActionResult List()
         {
-            var model = DatabaseAccess.Books
+            var model = _dbContext.Books
                 .Select(b => new ListItemViewModel(b.Id, b.Title, b.Price, b.CreatedAt))
                 .ToList();
 
@@ -24,13 +33,13 @@ namespace DemoApplication.Controllers
         [HttpGet("detail/{id}", Name = "book-details")]
         public ActionResult Details([FromRoute] int id)
         {
-            var book = DatabaseAccess.Books.Where(b => b.Id == id).FirstOrDefault();
+            var book = _dbContext.Books.Where(b => b.Id == id).FirstOrDefault();
             if (book == null)
             {
                 return NotFound();
             }
 
-            var model = new DetailsViewModel(book.Title, book.Author, book.Price, book.CreatedAt);
+            var model = new DetailsViewModel(book.Title, String.Empty, book.Price, book.CreatedAt);
             return View(model);
         }
 
@@ -52,11 +61,10 @@ namespace DemoApplication.Controllers
                 return View(model);
             }
 
-            DatabaseAccess.Books.Add(new Book
+            _dbContext.Books.Add(new Book
             {
-                Id = TablePkAutoincrement.ContactCounter,
                 Title = model.Title,
-                Author = model.Author,
+                //Author = model.Author,
                 Price = model.Price.Value,
                 CreatedAt = DateTime.Now
             });
@@ -71,19 +79,19 @@ namespace DemoApplication.Controllers
         [HttpGet("update/{id}", Name = "book-update")]
         public ActionResult Update([FromRoute] int id)
         {
-            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
             if (book is null)
             {
                 return NotFound();
             }
 
-            return View(new UpdateResponseViewModel { Id = book.Id, Title = book.Title, Author = book.Author, Price = book.Price });
+            return View(new UpdateResponseViewModel { Id = book.Id, Title = book.Title, /*Author = book.Author, */Price = book.Price });
         }
 
         [HttpPost("update/{id}", Name = "book-update")]
         public ActionResult Update([FromRoute] int id, [FromForm] UpdateRequestViewModel model)
         {
-            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
             if (book is null)
             {
                 return NotFound();
@@ -95,7 +103,7 @@ namespace DemoApplication.Controllers
             }
 
             book.Title = model.Title;
-            book.Author = model.Author;
+            //book.Author = model.Author;
             book.Price = model.Price.Value;
 
             return RedirectToAction(nameof(List));
@@ -109,7 +117,7 @@ namespace DemoApplication.Controllers
         [HttpGet("delete", Name = "book-delete-bulk")]
         public ActionResult Delete()
         {
-            DatabaseAccess.Books.Clear();
+            //_dbContext.Books.re
 
             return RedirectToAction(nameof(List));
         }
@@ -117,13 +125,14 @@ namespace DemoApplication.Controllers
         [HttpGet("delete/{id}", Name = "book-delete-individual")]
         public ActionResult Delete(int id)
         {
-            var book = DatabaseAccess.Books.FirstOrDefault(b => b.Id == id);
+            var book = _dbContext.Books.FirstOrDefault(b => b.Id == id);
             if (book is null)
             {
                 return NotFound();
             }
 
-            DatabaseAccess.Books.Remove(book);
+            _dbContext.Books.Remove(book);
+            _dbContext.SaveChanges();
 
             return RedirectToAction(nameof(List));
         }
