@@ -1,16 +1,16 @@
-﻿namespace DemoApplication.ViewModels.Book
+﻿namespace DemoApplication.ViewModels.Client.Book
 {
-    public class DetailsViewModel
+    public class ListItemViewModel
     {
+        public int Id { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
         public decimal Price { get; set; }
         public DateTime CreatedAt { get; set; }
 
-        public DetailsViewModel(string title, string author, decimal price, DateTime createdAt)
+        public ListItemViewModel(int id, string title, decimal price, DateTime createdAt)
         {
+            Id = id;
             Title = title;
-            Author = author;
             Price = price;
             CreatedAt = createdAt;
         }

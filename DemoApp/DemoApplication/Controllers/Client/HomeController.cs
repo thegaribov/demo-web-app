@@ -1,6 +1,6 @@
 ﻿using DemoApplication.Database;
 using DemoApplication.Database.Models;
-using DemoApplication.ViewModels.Home.Contact;
+using DemoApplication.ViewModels.Client.Home.Contact;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers.Client

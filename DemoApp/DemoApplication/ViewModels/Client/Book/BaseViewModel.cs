@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DemoApplication.ViewModels.Book
+namespace DemoApplication.ViewModels.Client.Book
 {
     public abstract class BaseViewModel
     {

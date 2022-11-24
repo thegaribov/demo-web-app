@@ -1,14 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using DemoApplication.Database;
+using DemoApplication.ViewModels.Admin.Author;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Controllers.Admin
 {
     [Route("admin/author")]
     public class AuthorController : Controller
     {
-        [HttpGet("list")]
+        private readonly DataContext _dataContext;
+
+        public AuthorController(DataContext dataContext)
+        {
+            _dataContext = dataContext;
+        }
+
+        [HttpGet("list", Name = "admin-author-list")]
         public IActionResult List()
         {
-            return View("~/Views/Admin/Author/List.cshtml");
+            var model = _dataContext.Authors
+                .Select(a => new ListItemViewModel(a.Id, a.FirstName, a.LastName))
+                .ToList();
+
+            return View("~/Views/Admin/Author/List.cshtml", model);
         }
     }
 }

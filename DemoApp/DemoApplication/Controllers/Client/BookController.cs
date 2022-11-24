@@ -1,7 +1,7 @@
 ﻿using DemoApplication.Database;
 using DemoApplication.Database.Models;
-using DemoApplication.ViewModels.Book;
-using DemoApplication.ViewModels.Book.Update;
+using DemoApplication.ViewModels.Client.Book;
+using DemoApplication.ViewModels.Client.Book.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
