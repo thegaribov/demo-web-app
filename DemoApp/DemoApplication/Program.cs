@@ -1,3 +1,6 @@
+using DemoApplication.Database;
+using Microsoft.EntityFrameworkCore;
+
 namespace DemoApplication
 {
     public class Program
@@ -6,6 +9,10 @@ namespace DemoApplication
         {
             var builder = WebApplication.CreateBuilder(args);
             builder.Services
+                .AddDbContext<DataContext>(o =>
+                {
+                    o.UseSqlServer(builder.Configuration.GetConnectionString("MahmoodPC"));
+                })
                 .AddMvc()
                 .AddRazorRuntimeCompilation();
 
