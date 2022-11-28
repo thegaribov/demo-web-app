@@ -1,9 +1,10 @@
 ﻿using DemoApplication.Contracts.Email;
 using DemoApplication.Options;
+using DemoApplication.Services.Abstracts;
 using MailKit.Net.Smtp;
 using MimeKit;
 
-namespace DemoApplication.Services.Abstracts
+namespace DemoApplication.Services.Concretes
 {
     public class SMTPService : IEmailService
     {
@@ -23,7 +24,7 @@ namespace DemoApplication.Services.Abstracts
         private MimeMessage CreateEmailMessage(MessageDto message)
         {
             var emailMessage = new MimeMessage();
-            emailMessage.From.Add(new MailboxAddress(String.Empty, _emailConfig.From));
+            emailMessage.From.Add(new MailboxAddress(string.Empty, _emailConfig.From));
             emailMessage.To.AddRange(message.To);
             emailMessage.Subject = message.Subject;
             emailMessage.Body = new TextPart(MimeKit.Text.TextFormat.Text)
