@@ -1,4 +1,6 @@
 using DemoApplication.Database;
+using DemoApplication.Options;
+using DemoApplication.Services.Abstracts;
 using Microsoft.EntityFrameworkCore;
 
 namespace DemoApplication
@@ -8,6 +10,11 @@ namespace DemoApplication
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfigOptions>();
+            builder.Services.AddSingleton(emailConfig);
+
+            builder.Services.AddScoped<IEmailService, SMTPService>();
             builder.Services
                 .AddDbContext<DataContext>(o =>
                 {

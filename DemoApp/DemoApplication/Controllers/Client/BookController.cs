@@ -1,5 +1,6 @@
 ﻿using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using DemoApplication.Services.Abstracts;
 using DemoApplication.ViewModels.Client.Book;
 using DemoApplication.ViewModels.Client.Book.Update;
 using Microsoft.AspNetCore.Mvc;
@@ -12,10 +13,12 @@ namespace DemoApplication.Controllers.Client
     public class BookController : Controller
     {
         private readonly DataContext _dbContext;
+        private readonly IEmailService _emailService;
 
-        public BookController(DataContext dbContext)
+        public BookController(DataContext dbContext, IEmailService emailService)
         {
             _dbContext = dbContext;
+            _emailService = emailService;
         }
 
         #region Read
