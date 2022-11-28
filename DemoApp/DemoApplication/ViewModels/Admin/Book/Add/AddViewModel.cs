@@ -14,6 +14,6 @@ namespace DemoApplication.ViewModels.Admin.Book.Add
         [Required]
         public int AuthorId { get; set; }
 
-        public List<AuthorListItemViewModel> Authors { get; set; }
+        public List<AuthorListItemViewModel>? Authors { get; set; }
     }
 }
