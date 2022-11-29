@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoApplication.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20221129155302_Category")]
-    partial class Category
+    [Migration("20221129164101_BookCategory_m2m")]
+    partial class BookCategory_m2m
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,7 +48,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Book", b =>
@@ -94,7 +94,7 @@ namespace DemoApplication.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookCategory");
+                    b.ToTable("BookCategories", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Category", b =>
@@ -117,7 +117,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Contact", b =>
@@ -152,7 +152,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Book", b =>

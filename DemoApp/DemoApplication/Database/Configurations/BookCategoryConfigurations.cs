@@ -10,6 +10,9 @@ namespace DemoApplication.Database.Configurations
         public void Configure(EntityTypeBuilder<BookCategory> builder)
         {
             builder
+                .ToTable("BookCategories");
+
+            builder
                 .HasKey(bc => new { bc.CategoryId, bc.BookId });
 
             builder

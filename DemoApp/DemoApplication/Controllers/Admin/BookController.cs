@@ -3,6 +3,7 @@ using DemoApplication.Database.Models;
 using DemoApplication.ViewModels.Admin.Book;
 using DemoApplication.ViewModels.Admin.Book.Add;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Security.Cryptography.X509Certificates;
 
 namespace DemoApplication.Controllers.Admin
@@ -11,12 +12,13 @@ namespace DemoApplication.Controllers.Admin
     public class BookController : Controller
     {
         private readonly DataContext _dataContext;
+        private readonly ILogger<BookController> _logger;
 
-        public BookController(DataContext dataContext)
+        public BookController(DataContext dataContext, ILogger<BookController> logger)
         {
             _dataContext = dataContext;
+            _logger = logger;
         }
-
 
 
         [HttpGet("list", Name = "admin-book-list")]
@@ -35,8 +37,11 @@ namespace DemoApplication.Controllers.Admin
             var model = new AddViewModel
             {
                 Authors = _dataContext.Authors
-                .Select(a => new AuthorListItemViewModel(a.Id, $"{a.FirstName} {a.LastName}"))
-                .ToList()
+                    .Select(a => new AuthorListItemViewModel(a.Id, $"{a.FirstName} {a.LastName}"))
+                    .ToList(),
+                Categories = _dataContext.Categories
+                    .Select(c => new CategoryListItemViewModel(c.Id, c.Title ))
+                    .ToList(),
             };
 
             return View("~/Views/Admin/Book/Add.cshtml", model);
@@ -53,9 +58,20 @@ namespace DemoApplication.Controllers.Admin
             if (!_dataContext.Authors.Any(a => a.Id == model.AuthorId))
             {
                 ModelState.AddModelError(String.Empty, "Author is not found");
-
                 return GetView(model);
             }
+
+            foreach (var categoryId in model.CategoryIds)
+            {
+                if (!_dataContext.Categories.Any(c => c.Id == categoryId))
+                {
+                    ModelState.AddModelError(String.Empty, "Something went wrong");
+                    _logger.LogWarning($"Category with id({categoryId}) not found in db ");
+                    return GetView(model);
+                }
+
+            }
+
 
             AddBook();
 
@@ -69,6 +85,10 @@ namespace DemoApplication.Controllers.Admin
                 model.Authors = _dataContext.Authors
                     .Select(a => new AuthorListItemViewModel(a.Id, $"{a.FirstName} {a.LastName}"))
                     .ToList();
+
+                model.Categories = _dataContext.Categories
+                   .Select(c => new CategoryListItemViewModel(c.Id, c.Title))
+                   .ToList();
 
                 return View("~/Views/Admin/Book/Add.cshtml", model);
             }
@@ -84,6 +104,18 @@ namespace DemoApplication.Controllers.Admin
                 };
 
                 _dataContext.Books.Add(book);
+
+                foreach (var categoryId in model.CategoryIds)
+                {
+                    var bookCategory = new BookCategory
+                    {
+                        CategoryId = categoryId,
+                        Book = book,
+                    };
+
+                    _dataContext.BookCategories.Add(bookCategory);
+                }
+
                 _dataContext.SaveChanges();
             }
         }

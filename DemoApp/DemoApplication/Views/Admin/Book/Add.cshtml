@@ -11,6 +11,11 @@
                         <div class="text-danger" asp-validation-summary="ModelOnly"></div>
 
                         <div class="form-group">
+                            <label>Categories</label>
+                            <select asp-for="CategoryIds" asp-items="@(new SelectList(Model.Categories, nameof(CategoryListItemViewModel.Id), nameof(CategoryListItemViewModel.Title)))" class="form-select">                            </select>
+                            <span asp-validation-for="CategoryIds" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
                             <label>Authors</label>
                             <select asp-for="AuthorId" asp-items="@(new SelectList(Model.Authors, nameof(AuthorListItemViewModel.Id), nameof(AuthorListItemViewModel.FullName)))" class="form-select">                            </select>
                             <span asp-validation-for="AuthorId" class="text-danger"></span>

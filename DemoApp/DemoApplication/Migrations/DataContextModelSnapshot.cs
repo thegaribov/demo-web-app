@@ -46,7 +46,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Authors");
+                    b.ToTable("Authors", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Book", b =>
@@ -92,7 +92,7 @@ namespace DemoApplication.Migrations
 
                     b.HasIndex("BookId");
 
-                    b.ToTable("BookCategory");
+                    b.ToTable("BookCategories", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Category", b =>
@@ -115,7 +115,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Category");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Contact", b =>
@@ -150,7 +150,7 @@ namespace DemoApplication.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contacts");
+                    b.ToTable("Contacts", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.Book", b =>
