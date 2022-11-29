@@ -1,5 +1,7 @@
-﻿using DemoApplication.Database.Models;
+﻿using DemoApplication.Database.Configurations;
+using DemoApplication.Database.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection;
 
 namespace DemoApplication.Database
 {
@@ -18,11 +20,8 @@ namespace DemoApplication.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .Entity<Book>()
-                .HasOne(b => b.Author)
-                .WithMany(a => a.Books)
-                .HasForeignKey(b => b.AuthorId);
+            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(Program)));
+
         }
     }
 }
