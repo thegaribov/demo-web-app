@@ -23,11 +23,6 @@ namespace DemoApplication.Database
                 .HasOne(b => b.Author)
                 .WithMany(a => a.Books)
                 .HasForeignKey(b => b.AuthorId);
-
-            modelBuilder
-               .Entity<Book>()
-               .HasIndex(b => b.Title)
-               .IsUnique();
         }
     }
 }
