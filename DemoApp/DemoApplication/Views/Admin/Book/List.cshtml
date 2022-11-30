@@ -33,7 +33,7 @@
                                 <td>@book.Author</td>
                                 <td>@book.CreatedAt.ToString("dd/MM/yyyy")</td>
                                 <td class="text-end">
-                                    <a href="#"><i class="las la-pen text-secondary font-16"></i></a>
+                                    <a asp-route="admin-book-update" asp-route-id="@book.Id" ><i class="las la-pen text-secondary font-16"></i></a>
                                     <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
                                 </td>
                             </tr>

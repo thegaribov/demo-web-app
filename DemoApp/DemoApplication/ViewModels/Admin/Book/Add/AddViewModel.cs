@@ -5,6 +5,8 @@ namespace DemoApplication.ViewModels.Admin.Book.Add
 {
     public class AddViewModel
     {
+        public int? Id { get; set; }
+
         [Required]
         public string Title { get; set; }
 
