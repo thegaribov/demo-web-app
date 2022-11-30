@@ -230,5 +230,20 @@ namespace DemoApplication.Controllers.Admin
                 _dataContext.SaveChanges();
             }
         }
+
+        [HttpPost("delete/{id}", Name = "admin-book-delete")]
+        public async Task<IActionResult> DeleteAsync([FromRoute] int id)
+        {
+            var book = await _dataContext.Books.FirstOrDefaultAsync(b => b.Id == id);
+            if (book is null)
+            {
+                return NotFound();
+            }
+
+            _dataContext.Books.Remove(book);
+            await _dataContext.SaveChangesAsync();
+
+            return RedirectToRoute("admin-book-list");
+        }
     }
 }

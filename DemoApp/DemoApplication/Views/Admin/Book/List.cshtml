@@ -34,7 +34,10 @@
                                 <td>@book.CreatedAt.ToString("dd/MM/yyyy")</td>
                                 <td class="text-end">
                                     <a asp-route="admin-book-update" asp-route-id="@book.Id" ><i class="las la-pen text-secondary font-16"></i></a>
-                                    <a href="#"><i class="las la-trash-alt text-secondary font-16"></i></a>
+                                    <form method="POST" asp-route="admin-book-delete" asp-route-id="@book.Id" id="book-form-@book.Id" ></form>
+                                    <button type="submit" form="book-form-@book.Id">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </button>
                                 </td>
                             </tr>
                         }
