@@ -9,6 +9,11 @@ namespace DemoApplication.Database.Models
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
 
+        public int? ParentId { get; set; }
+        public Category? Parent { get; set; }
+
+
         public List<BookCategory> BookCategories { get; set; }
+        public List<Category> Categories { get; set; }
     }
 }

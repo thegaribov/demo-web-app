@@ -11,6 +11,11 @@ namespace DemoApplication.Database.Configurations
         {
             builder
                .ToTable("Categories");
+
+            builder
+               .HasOne(c => c.Parent)
+               .WithMany(pc => pc.Categories)
+               .HasForeignKey(c => c.ParentId);
         }
     }
 }

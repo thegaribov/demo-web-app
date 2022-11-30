@@ -31,6 +31,7 @@
                                 <td>@book.Title</td>
                                 <td>@book.Price</td>
                                 <td>@book.Author</td>
+                                <td>@string.Join(", ", book.Categories.Select(c => $"{c.Title}->{c.ParentTitle}"))</td>
                                 <td>@book.CreatedAt.ToString("dd/MM/yyyy")</td>
                                 <td class="text-end">
                                     <a asp-route="admin-book-update" asp-route-id="@book.Id" ><i class="las la-pen text-secondary font-16"></i></a>

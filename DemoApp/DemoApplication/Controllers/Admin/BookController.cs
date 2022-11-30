@@ -26,11 +26,19 @@ namespace DemoApplication.Controllers.Admin
         #region List
 
         [HttpGet("list", Name = "admin-book-list")]
-        public IActionResult List()
+        public async Task<IActionResult> ListAsync()
         {
-            var model = _dataContext.Books
-                .Select(b => new ListItemViewModel(b.Id, b.Title, b.Price, $"{b.Author.FirstName} {b.Author.LastName}", b.CreatedAt))
-                .ToList();
+            var model = await _dataContext.Books
+                .Select(b => new ListItemViewModel(
+                        b.Id, 
+                        b.Title, 
+                        b.Price, 
+                        $"{b.Author.FirstName} {b.Author.LastName}", 
+                        b.CreatedAt, 
+                        b.BookCategories
+                            .Select(bc => bc.Category)
+                                .Select(c => new ListItemViewModel.CategoryViewModeL(c.Title, c.Parent.Title)).ToList()))
+                .ToListAsync();
 
             return View("~/Views/Admin/Book/List.cshtml", model);
         }
@@ -83,7 +91,7 @@ namespace DemoApplication.Controllers.Admin
 
             AddBook();
 
-            return RedirectToAction(nameof(List));
+            return RedirectToAction(nameof(ListAsync));
 
 
 
@@ -194,7 +202,7 @@ namespace DemoApplication.Controllers.Admin
 
             await UpdateBookAsync();
 
-            return RedirectToAction(nameof(List));
+            return RedirectToRoute("admin-book-list");
 
 
 
