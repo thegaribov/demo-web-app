@@ -23,6 +23,8 @@ namespace DemoApplication.Controllers.Admin
         }
 
 
+        #region List
+
         [HttpGet("list", Name = "admin-book-list")]
         public IActionResult List()
         {
@@ -32,6 +34,10 @@ namespace DemoApplication.Controllers.Admin
 
             return View("~/Views/Admin/Book/List.cshtml", model);
         }
+
+        #endregion
+
+        #region Add
 
         [HttpGet("add", Name = "admin-book-add")]
         public IActionResult Add()
@@ -121,6 +127,11 @@ namespace DemoApplication.Controllers.Admin
                 _dataContext.SaveChanges();
             }
         }
+
+
+        #endregion
+
+        #region Update
 
         [HttpGet("update/{id}", Name = "admin-book-update")]
         public async Task<IActionResult> UpdateAsync([FromRoute] int id)
@@ -231,6 +242,10 @@ namespace DemoApplication.Controllers.Admin
             }
         }
 
+        #endregion
+
+        #region Delete
+
         [HttpPost("delete/{id}", Name = "admin-book-delete")]
         public async Task<IActionResult> DeleteAsync([FromRoute] int id)
         {
@@ -244,6 +259,8 @@ namespace DemoApplication.Controllers.Admin
             await _dataContext.SaveChangesAsync();
 
             return RedirectToRoute("admin-book-list");
-        }
+        } 
+
+        #endregion
     }
 }
