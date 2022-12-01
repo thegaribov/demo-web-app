@@ -1,8 +1,14 @@
 using DemoApplication.Database;
+using DemoApplication.Infrastructure.Extensions;
 using DemoApplication.Options;
 using DemoApplication.Services.Abstracts;
 using DemoApplication.Services.Concretes;
+using DemoApplication.Validators.Admin.Book.Add;
+using DemoApplication.ViewModels.Admin.Book.Add;
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DemoApplication
 {
@@ -10,28 +16,19 @@ namespace DemoApplication
     {
         public static void Main(string[] args)
         {
+            //setup
             var builder = WebApplication.CreateBuilder(args);
 
-            var emailConfig = builder.Configuration.GetSection("EmailConfiguration").Get<EmailConfigOptions>();
-            builder.Services.AddSingleton(emailConfig);
+            //Register services (IoC container)
+            builder.Services.ConfigureServices(builder.Configuration);
 
-            builder.Services.AddScoped<IEmailService, SMTPService>();
-            builder.Services
-                .AddDbContext<DataContext>(o =>
-                {
-                    o.UseSqlServer(builder.Configuration.GetConnectionString("MahmoodPC"));
-                })
-                .AddMvc()
-                .AddRazorRuntimeCompilation();
-
+            //setup
             var app = builder.Build();
 
-            app.UseStaticFiles();
+            //Configuration of middleware pipeline
+            app.ConfigureMiddlewarePipeline();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=home}/{action=index}");
-
+            //setup
             app.Run();
         }
     }

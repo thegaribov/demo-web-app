@@ -1099,7 +1099,6 @@
   <ItemGroup>
     <Folder Include="Contracts\Constants\" />
     <Folder Include="Contracts\Enums\" />
-    <Folder Include="Infrastructure\Configurations\" />
   </ItemGroup>
 
 </Project>
