@@ -77,7 +77,7 @@ namespace DemoApplication.Migrations
 
                     b.HasIndex("AuthorId");
 
-                    b.ToTable("Books");
+                    b.ToTable("Books", (string)null);
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.BookCategory", b =>

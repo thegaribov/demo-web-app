@@ -1,5 +1,6 @@
 ﻿using DemoApplication.Database.Configurations;
 using DemoApplication.Database.Models;
+using DemoApplication.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -22,8 +23,7 @@ namespace DemoApplication.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetAssembly(typeof(Program)));
-
+            modelBuilder.ApplyConfigurationsFromAssembly<Program>();
         }
     }
 }

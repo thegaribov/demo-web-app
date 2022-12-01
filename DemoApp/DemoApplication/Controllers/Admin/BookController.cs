@@ -91,7 +91,7 @@ namespace DemoApplication.Controllers.Admin
 
             AddBook();
 
-            return RedirectToAction(nameof(ListAsync));
+            return RedirectToRoute("admin-book-list");
 
 
 

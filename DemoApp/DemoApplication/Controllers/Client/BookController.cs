@@ -21,7 +21,7 @@ namespace DemoApplication.Controllers.Client
             _emailService = emailService;
         }
 
-        #region Read
+        #region List
 
         [HttpGet("list", Name = "book-list")]
         public ActionResult List()

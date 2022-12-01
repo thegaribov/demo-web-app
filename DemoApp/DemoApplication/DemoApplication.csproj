@@ -1079,6 +1079,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.2.2" />
     <PackageReference Include="MailKit" Version="3.4.3" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.11" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.11" />
@@ -1098,6 +1099,7 @@
   <ItemGroup>
     <Folder Include="Contracts\Constants\" />
     <Folder Include="Contracts\Enums\" />
+    <Folder Include="Infrastructure\Configurations\" />
   </ItemGroup>
 
 </Project>
