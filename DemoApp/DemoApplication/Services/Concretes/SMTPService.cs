@@ -2,6 +2,7 @@
 using DemoApplication.Options;
 using DemoApplication.Services.Abstracts;
 using MailKit.Net.Smtp;
+using Microsoft.Extensions.Options;
 using MimeKit;
 
 namespace DemoApplication.Services.Concretes
@@ -10,9 +11,9 @@ namespace DemoApplication.Services.Concretes
     {
         private EmailConfigOptions _emailConfig;
 
-        public SMTPService(EmailConfigOptions emailConfig)
+        public SMTPService(IOptions<EmailConfigOptions> emailConfigOptions)
         {
-            _emailConfig = emailConfig;
+            _emailConfig = emailConfigOptions.Value;
         }
 
         public void Send(MessageDto message)
