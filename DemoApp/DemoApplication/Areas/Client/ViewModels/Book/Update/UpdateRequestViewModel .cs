@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using DemoApplication.Areas.Client.ViewModels.Book;
+using System.ComponentModel.DataAnnotations;
 
-namespace DemoApplication.ViewModels.Client.Book.Update
+namespace DemoApplication.Areas.Client.ViewModels.Book.Update
 {
     public class UpdateRequestViewModel : BaseViewModel
     {

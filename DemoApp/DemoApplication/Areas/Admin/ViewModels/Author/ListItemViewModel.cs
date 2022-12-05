@@ -1,4 +1,4 @@
-﻿namespace DemoApplication.ViewModels.Admin.Author
+﻿namespace DemoApplication.Areas.Admin.ViewModels.Author
 {
     public class ListItemViewModel
     {

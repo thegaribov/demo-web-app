@@ -1,7 +1,7 @@
-﻿using DemoApplication.ViewModels.Admin.Book.Add;
+﻿using DemoApplication.Areas.Admin.ViewModels.Book.Add;
 using FluentValidation;
 
-namespace DemoApplication.Validators.Admin.Book.Add
+namespace DemoApplication.Areas.Admin.Validators.Admin.Book.Add
 {
     public class AddViewModelValidator : AbstractValidator<AddViewModel>
     {

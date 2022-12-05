@@ -1,9 +1,9 @@
-﻿using DemoApplication.Database;
+﻿using DemoApplication.Areas.Client.ViewModels.Home.Contact;
+using DemoApplication.Database;
 using DemoApplication.Database.Models;
-using DemoApplication.ViewModels.Client.Home.Contact;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DemoApplication.Controllers
+namespace DemoApplication.Areas.Client.Controllers
 {
     [Area("client")]
     [Route("home")]

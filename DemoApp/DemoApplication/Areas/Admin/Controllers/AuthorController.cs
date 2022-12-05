@@ -1,5 +1,5 @@
-﻿using DemoApplication.Database;
-using DemoApplication.ViewModels.Admin.Author;
+﻿using DemoApplication.Areas.Admin.ViewModels.Author;
+using DemoApplication.Database;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DemoApplication.Areas.Admin.Controllers

@@ -1,4 +1,4 @@
-﻿namespace DemoApplication.ViewModels.Admin.Book.Add
+﻿namespace DemoApplication.Areas.Admin.ViewModels.Book.Add
 {
     public class AuthorListItemViewModel
     {
@@ -10,7 +10,7 @@
         {
             Id = id;
             FullName = fullName;
-            
+
         }
     }
 }

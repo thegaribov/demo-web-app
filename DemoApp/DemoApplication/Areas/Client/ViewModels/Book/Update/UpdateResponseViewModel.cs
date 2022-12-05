@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DemoApplication.ViewModels.Client.Book.Update
+namespace DemoApplication.Areas.Client.ViewModels.Book.Update
 {
     public class UpdateResponseViewModel : BaseViewModel
     {

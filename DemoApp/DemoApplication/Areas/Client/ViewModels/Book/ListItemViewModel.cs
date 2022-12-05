@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace DemoApplication.ViewModels.Client.Book
+namespace DemoApplication.Areas.Client.ViewModels.Book
 {
     public class ListItemViewModel
     {

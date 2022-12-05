@@ -1,13 +1,13 @@
-﻿using DemoApplication.Database;
+﻿using DemoApplication.Areas.Client.ViewModels.Book;
+using DemoApplication.Areas.Client.ViewModels.Book.Update;
+using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Services.Abstracts;
-using DemoApplication.ViewModels.Client.Book;
-using DemoApplication.ViewModels.Client.Book.Update;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace DemoApplication.Controllers
+namespace DemoApplication.Areas.Client.Controllers
 {
     [Area("client")]
     [Route("book")]

@@ -1,7 +1,7 @@
-﻿using DemoApplication.Database;
+﻿using DemoApplication.Areas.Admin.ViewModels.Book;
+using DemoApplication.Areas.Admin.ViewModels.Book.Add;
+using DemoApplication.Database;
 using DemoApplication.Database.Models;
-using DemoApplication.ViewModels.Admin.Book;
-using DemoApplication.ViewModels.Admin.Book.Add;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;

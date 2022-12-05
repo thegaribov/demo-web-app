@@ -1,4 +1,4 @@
-﻿namespace DemoApplication.ViewModels.Admin.Book
+﻿namespace DemoApplication.Areas.Admin.ViewModels.Book
 {
     public class ListItemViewModel
     {

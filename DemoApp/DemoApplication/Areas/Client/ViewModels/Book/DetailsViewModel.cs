@@ -1,4 +1,4 @@
-﻿namespace DemoApplication.ViewModels.Client.Book
+﻿namespace DemoApplication.Areas.Client.ViewModels.Book
 {
     public class DetailsViewModel
     {
