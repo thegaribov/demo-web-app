@@ -7,11 +7,22 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="Views\Index.cshtml" />
+    <Compile Remove="Contracts\Constants\**" />
+    <Compile Remove="Contracts\Enums\**" />
+    <Content Remove="Contracts\Constants\**" />
+    <Content Remove="Contracts\Enums\**" />
+    <EmbeddedResource Remove="Contracts\Constants\**" />
+    <EmbeddedResource Remove="Contracts\Enums\**" />
+    <None Remove="Contracts\Constants\**" />
+    <None Remove="Contracts\Enums\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Client\Home\Index.cshtml" />
+    <Content Remove="Areas\Client\Views\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Areas\Client\Views\Home\Index.cshtml" />
     <None Include="wwwroot\admin\assets\css\app-dark-rtl.min.css.map" />
     <None Include="wwwroot\admin\assets\css\app-dark.min.css.map" />
     <None Include="wwwroot\admin\assets\css\app-material.min.css.map" />
@@ -1094,11 +1105,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MimeKit" Version="3.4.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Contracts\Constants\" />
-    <Folder Include="Contracts\Enums\" />
   </ItemGroup>
 
 </Project>

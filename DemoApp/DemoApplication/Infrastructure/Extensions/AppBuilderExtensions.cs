@@ -8,7 +8,7 @@
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=home}/{action=index}");
+                pattern: "{area=exists}/{controller=home}/{action=index}");
 
         }
     }

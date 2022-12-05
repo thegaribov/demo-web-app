@@ -8,8 +8,9 @@ using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 
-namespace DemoApplication.Controllers.Admin
+namespace DemoApplication.Areas.Admin.Controllers
 {
+    [Area("admin")]
     [Route("admin/book")]
     public class BookController : Controller
     {
@@ -30,17 +31,17 @@ namespace DemoApplication.Controllers.Admin
         {
             var model = await _dataContext.Books
                 .Select(b => new ListItemViewModel(
-                        b.Id, 
-                        b.Title, 
-                        b.Price, 
-                        $"{b.Author.FirstName} {b.Author.LastName}", 
-                        b.CreatedAt, 
+                        b.Id,
+                        b.Title,
+                        b.Price,
+                        $"{b.Author.FirstName} {b.Author.LastName}",
+                        b.CreatedAt,
                         b.BookCategories
                             .Select(bc => bc.Category)
                                 .Select(c => new ListItemViewModel.CategoryViewModeL(c.Title, c.Parent.Title)).ToList()))
                 .ToListAsync();
 
-            return View("~/Views/Admin/Book/List.cshtml", model);
+            return View(model);
         }
 
         #endregion
@@ -60,7 +61,7 @@ namespace DemoApplication.Controllers.Admin
                     .ToList(),
             };
 
-            return View("~/Views/Admin/Book/Add.cshtml", model);
+            return View(model);
         }
 
         [HttpPost("add", Name = "admin-book-add")]
@@ -73,7 +74,7 @@ namespace DemoApplication.Controllers.Admin
 
             if (!_dataContext.Authors.Any(a => a.Id == model.AuthorId))
             {
-                ModelState.AddModelError(String.Empty, "Author is not found");
+                ModelState.AddModelError(string.Empty, "Author is not found");
                 return GetView(model);
             }
 
@@ -81,7 +82,7 @@ namespace DemoApplication.Controllers.Admin
             {
                 if (!_dataContext.Categories.Any(c => c.Id == categoryId))
                 {
-                    ModelState.AddModelError(String.Empty, "Something went wrong");
+                    ModelState.AddModelError(string.Empty, "Something went wrong");
                     _logger.LogWarning($"Category with id({categoryId}) not found in db ");
                     return GetView(model);
                 }
@@ -106,7 +107,7 @@ namespace DemoApplication.Controllers.Admin
                    .Select(c => new CategoryListItemViewModel(c.Id, c.Title))
                    .ToList();
 
-                return View("~/Views/Admin/Book/Add.cshtml", model);
+                return View(model);
             }
 
             void AddBook()
@@ -165,7 +166,7 @@ namespace DemoApplication.Controllers.Admin
                 CategoryIds = book.BookCategories.Select(bc => bc.CategoryId).ToList()
             };
 
-            return View("~/Views/Admin/Book/Update.cshtml", model);
+            return View(model);
         }
 
         [HttpPost("update/{id}", Name = "admin-book-update")]
@@ -184,7 +185,7 @@ namespace DemoApplication.Controllers.Admin
 
             if (!_dataContext.Authors.Any(a => a.Id == model.AuthorId))
             {
-                ModelState.AddModelError(String.Empty, "Author is not found");
+                ModelState.AddModelError(string.Empty, "Author is not found");
                 return GetView(model);
             }
 
@@ -192,7 +193,7 @@ namespace DemoApplication.Controllers.Admin
             {
                 if (!_dataContext.Categories.Any(c => c.Id == categoryId))
                 {
-                    ModelState.AddModelError(String.Empty, "Something went wrong");
+                    ModelState.AddModelError(string.Empty, "Something went wrong");
                     _logger.LogWarning($"Category with id({categoryId}) not found in db ");
                     return GetView(model);
                 }
@@ -219,7 +220,7 @@ namespace DemoApplication.Controllers.Admin
 
                 model.CategoryIds = book.BookCategories.Select(bc => bc.CategoryId).ToList();
 
-                return View("~/Views/Admin/Book/Add.cshtml", model);
+                return View(model);
             }
 
             async Task UpdateBookAsync()
@@ -267,7 +268,7 @@ namespace DemoApplication.Controllers.Admin
             await _dataContext.SaveChangesAsync();
 
             return RedirectToRoute("admin-book-list");
-        } 
+        }
 
         #endregion
     }

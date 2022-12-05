@@ -2,8 +2,9 @@
 using DemoApplication.ViewModels.Admin.Author;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DemoApplication.Controllers.Admin
+namespace DemoApplication.Areas.Admin.Controllers
 {
+    [Area("admin")]
     [Route("admin/author")]
     public class AuthorController : Controller
     {
@@ -21,7 +22,7 @@ namespace DemoApplication.Controllers.Admin
                 .Select(a => new ListItemViewModel(a.Id, a.FirstName, a.LastName))
                 .ToList();
 
-            return View("~/Views/Admin/Author/List.cshtml", model);
+            return View(model);
         }
     }
 }

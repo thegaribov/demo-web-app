@@ -3,8 +3,9 @@ using DemoApplication.Database.Models;
 using DemoApplication.ViewModels.Client.Home.Contact;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DemoApplication.Controllers.Client
+namespace DemoApplication.Controllers
 {
+    [Area("client")]
     [Route("home")]
     public class HomeController : Controller
     {
@@ -19,13 +20,13 @@ namespace DemoApplication.Controllers.Client
         [HttpGet("index")]
         public ActionResult Index()
         {
-            return View("~/Views/Client/Home/Index.cshtml");
+            return View();
         }
 
         [HttpGet("contact")]
         public ActionResult Contact()
         {
-            return View("~/Views/Client/Home/Contact.cshtml");
+            return View();
         }
 
         [HttpPost("contact")]
@@ -33,7 +34,7 @@ namespace DemoApplication.Controllers.Client
         {
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Client/Home/Contact.cshtml");
+                return View();
             }
 
             _dbContext.Contacts.Add(new Contact

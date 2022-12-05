@@ -7,8 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
-namespace DemoApplication.Controllers.Client
+namespace DemoApplication.Controllers
 {
+    [Area("client")]
     [Route("book")]
     public class BookController : Controller
     {
@@ -30,7 +31,7 @@ namespace DemoApplication.Controllers.Client
                 .Select(b => new ListItemViewModel(b.Id, b.Title, b.Price, b.CreatedAt))
                 .ToList();
 
-            return View("~/Views/Client/Book/List.cshtml", model);
+            return View(model);
         }
 
         [HttpGet("detail/{id}", Name = "book-details")]
@@ -43,7 +44,7 @@ namespace DemoApplication.Controllers.Client
             }
 
             var model = new DetailsViewModel(book.Title, string.Empty, book.Price, book.CreatedAt);
-            return View("~/Views/Client/Book/Details.cshtml", model);
+            return View(model);
         }
 
         #endregion
@@ -53,7 +54,7 @@ namespace DemoApplication.Controllers.Client
         [HttpGet("add", Name = "book-add")]
         public ActionResult Add()
         {
-            return View("~/Views/Client/Book/Add.cshtml");
+            return View();
         }
 
         [HttpPost("add", Name = "book-add")]
@@ -61,7 +62,7 @@ namespace DemoApplication.Controllers.Client
         {
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Client/Book/Add.cshtml", model);
+                return View(model);
             }
 
             _dbContext.Books.Add(new Book
@@ -88,7 +89,7 @@ namespace DemoApplication.Controllers.Client
                 return NotFound();
             }
 
-            return View("~/Views/Client/Book/Update.cshtml", new UpdateResponseViewModel { Id = book.Id, Title = book.Title, /*Author = book.Author, */Price = book.Price });
+            return View(new UpdateResponseViewModel { Id = book.Id, Title = book.Title, /*Author = book.Author, */Price = book.Price });
         }
 
         [HttpPost("update/{id}", Name = "book-update")]
@@ -102,7 +103,7 @@ namespace DemoApplication.Controllers.Client
 
             if (!ModelState.IsValid)
             {
-                return View("~/Views/Client/Book/Update.cshtml", model);
+                return View(model);
             }
 
             book.Title = model.Title;
