@@ -102,7 +102,7 @@
                                             </span>
                                         </div>
                                         <div class="cart-dropdown-block">
-                                            <div class=" single-cart-block ">
+                                            <div class=" single-cart-block " id="basket-cart-mini">
                                                 <div class="cart-product">
                                                     <a href="product-details.html" class="image">
                                                         <img src="~/client/assets/image/products/cart-product-1.jpg" alt="">
@@ -284,11 +284,8 @@
     <script src="~/client/assets/js/plugins.js" asp-append-version="true"></script>
     <script src="~/client/assets/js/ajax-mail.js" asp-append-version="true"></script>
     <script src="~/client/assets/js/custom.js" asp-append-version="true"></script>
+    <script src="~/client/assets/js/cookie-management.js" asp-append-version="true"></script>
     <script src="~/client/assets/js/basket-management.js" asp-append-version="true"></script>
-
-    <script>
-        let basketManagement = new BasketManagement();
-    </script>
 
     @RenderSection("script", required : false)
 </body>
