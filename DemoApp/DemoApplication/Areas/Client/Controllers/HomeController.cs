@@ -18,7 +18,7 @@ namespace DemoApplication.Areas.Client.Controllers
             _dbContext = dbContext;
         }
 
-        [HttpGet("~/")]
+        [HttpGet("~/", Name = "client-home-index")]
         [HttpGet("index")]
         public async Task<IActionResult> IndexAsync()
         {
