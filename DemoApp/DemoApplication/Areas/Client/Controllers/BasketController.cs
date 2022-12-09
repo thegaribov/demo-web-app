@@ -1,4 +1,5 @@
-﻿using DemoApplication.Areas.Client.ViewModels.Basket;
+﻿using DemoApplication.Areas.Client.ViewComponents;
+using DemoApplication.Areas.Client.ViewModels.Basket;
 using DemoApplication.Database;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -47,7 +48,7 @@ namespace DemoApplication.Areas.Client.Controllers
 
             HttpContext.Response.Cookies.Append("products", JsonSerializer.Serialize(productsCookieViewModel));
 
-            return RedirectToRoute("client-home-index");
+            return ViewComponent(nameof(ShopCart), productsCookieViewModel);
         }
 
         [HttpGet("delete/{id}", Name = "client-basket-delete")]
@@ -70,7 +71,7 @@ namespace DemoApplication.Areas.Client.Controllers
 
             HttpContext.Response.Cookies.Append("products", JsonSerializer.Serialize(productsCookieViewModel));
 
-            return RedirectToRoute("client-home-index");
+            return ViewComponent(nameof(ShopCart));
         }
     }
 }

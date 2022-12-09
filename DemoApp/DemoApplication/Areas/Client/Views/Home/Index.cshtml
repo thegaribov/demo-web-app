@@ -158,12 +158,10 @@ ARTS & PHOTOGRAPHY BOOKS
                                         <img src="~/client/assets/image/products/product-1.jpg" alt="">
                                     </a>
                                     <div class="hover-btns">
-                                        <a asp-route="client-basket-add" asp-route-id="@book.Id" 
-                                            class="add-product-to-basket-btn single-btn">
-                                             @* data-id="@book.Id" 
-                                            data-image-url="/client/assets/image/products/product-1.jpg"
-                                            data-title="@book.Title"
-                                            data-price="@book.Price"*@
+                                        <a  asp-route="client-basket-add" 
+                                            asp-route-id="@book.Id"
+                                           data-id="@book.Id"
+                                           class="add-product-to-basket-btn single-btn">
                                            Add
                                         </a>
                                         <a href="wishlist.html" class="single-btn">

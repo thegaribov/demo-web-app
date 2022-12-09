@@ -28,7 +28,7 @@
                         </a>
                     </h3>
                     <p class="price"><span class="qty">@productCookieViewModel.Quantity ×</span> £@productCookieViewModel.Price</p>
-                    <a asp-route="client-basket-delete" asp-route-id="@productCookieViewModel.Id" class="cross-btn"><i class="fas fa-times"></i></a>
+                    <a data-id="@productCookieViewModel.Id" class="cross-btn remove-product-to-basket-btn"><i class="fas fa-times"></i></a>
                 </div>
             </div>
         }
