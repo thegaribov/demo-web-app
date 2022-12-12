@@ -1,5 +1,4 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
-@using DemoApplication.Areas.Client.ViewComponents;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -91,7 +90,7 @@
                                         <a asp-controller="authentication" asp-action="register">Register</a>
                                     </div>
                                     <div class="cart-block">
-                                        @await Component.InvokeAsync(nameof(ShopCart));
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -247,7 +246,6 @@
     <script src="~/client/assets/js/ajax-mail.js" asp-append-version="true"></script>
     <script src="~/client/assets/js/custom.js" asp-append-version="true"></script>
     <script src="~/client/assets/js/cookie-management.js" asp-append-version="true"></script>
-    <script src="~/client/assets/js/basket-management.js" asp-append-version="true"></script>
 
     @RenderSection("script", required : false)
 </body>
