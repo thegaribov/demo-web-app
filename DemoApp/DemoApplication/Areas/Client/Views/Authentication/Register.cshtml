@@ -22,7 +22,7 @@
         <div class="row justify-content-center">
             <div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
                 <!-- Login Form s-->
-                <form method="POST" asp-controller="authentication" asp-action="register">
+                <form method="POST" asp-route="client-auth-register" >
                     <div class="login-form">
                         <h4 class="login-title">New Customer</h4>
                         <p><span class="font-weight-bold">I am a new customer</span></p>
@@ -41,6 +41,16 @@
                                 <label for="password">Repeat Password</label>
                                 <input asp-for="ConfirmPassword" class="mb-0 form-control" placeholder="Repeat your password">
                                 <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mb--20">
+                                <label for="email">First name</label>
+                                <input asp-for="FirstName" class="mb-0 form-control" id="FirstName" placeholder="Enter Your FirstName Address Here..">
+                                <span asp-validation-for="FirstName" class="text-danger"></span>
+                            </div>
+                            <div class="col-12 mb--20">
+                                <label for="email">LastName</label>
+                                <input asp-for="LastName" class="mb-0 form-control" id="LastName" placeholder="Enter Your LastName Address Here..">
+                                <span asp-validation-for="LastName" class="text-danger"></span>
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-outlined">Register</button>

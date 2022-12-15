@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace DemoApplication.Database.Models
 {
-    public class Contact : BaseEntity, IAuditable
+    public class Contact : BaseEntity<int>, IAuditable
     {
         public string Name { get; set; }
         public string Email { get; set; }

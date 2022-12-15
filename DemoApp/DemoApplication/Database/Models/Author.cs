@@ -2,7 +2,7 @@
 
 namespace DemoApplication.Database.Models
 {
-    public class Author : BaseEntity, IAuditable
+    public class Author : BaseEntity<int>, IAuditable
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }

@@ -6,6 +6,9 @@
         {
             app.UseStaticFiles();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=exists}/{controller=home}/{action=index}");

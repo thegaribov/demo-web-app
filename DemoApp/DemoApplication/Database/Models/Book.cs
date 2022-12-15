@@ -2,7 +2,7 @@
 
 namespace DemoApplication.Database.Models
 {
-    public class Book : BaseEntity, IAuditable
+    public class Book : BaseEntity<int>, IAuditable
     {
         public string Title { get; set; }
         public decimal Price { get; set; }

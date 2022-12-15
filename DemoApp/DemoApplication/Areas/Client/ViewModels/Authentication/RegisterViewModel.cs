@@ -16,6 +16,8 @@ namespace DemoApplication.Areas.Client.ViewModels.Authentication
         [Compare(nameof(Password), ErrorMessage = "Password and confirm password is not same")]
         public string ConfirmPassword { get; set; }
 
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
 
     }
 }

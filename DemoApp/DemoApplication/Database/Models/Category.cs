@@ -2,7 +2,7 @@
 
 namespace DemoApplication.Database.Models
 {
-    public class Category : BaseEntity, IAuditable
+    public class Category : BaseEntity<int>, IAuditable
     {
         public string Title { get; set; }
 

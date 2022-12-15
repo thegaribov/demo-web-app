@@ -30,32 +30,32 @@ namespace DemoApplication.Areas.Client.Controllers
             };
 
             return View(model);
-    }
+        }
 
-    [HttpGet("contact")]
-    public ActionResult Contact()
-    {
-        return View();
-    }
-
-    [HttpPost("contact")]
-    public ActionResult Contact([FromForm] CreateViewModel contactViewModel)
-    {
-        if (!ModelState.IsValid)
+        [HttpGet("contact")]
+        public ActionResult Contact()
         {
             return View();
         }
 
-        _dbContext.Contacts.Add(new Contact
+        [HttpPost("contact")]
+        public ActionResult Contact([FromForm] CreateViewModel contactViewModel)
         {
-            Name = contactViewModel.Name,
-            Email = contactViewModel.Email,
-            Message = contactViewModel.Message,
-            Phone = contactViewModel.PhoneNumber,
-            CreatedAt = DateTime.Now
-        });
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
 
-        return RedirectToAction(nameof(Index));
+            _dbContext.Contacts.Add(new Contact
+            {
+                Name = contactViewModel.Name,
+                Email = contactViewModel.Email,
+                Message = contactViewModel.Message,
+                Phone = contactViewModel.PhoneNumber,
+                CreatedAt = DateTime.Now
+            });
+
+            return RedirectToAction(nameof(Index));
+        }
     }
-}
 }
