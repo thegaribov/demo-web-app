@@ -6,7 +6,7 @@
     <td>@Model.Name</td>
     <td>@Model.LastName</td>
     <td class="text-end">
-        <a asp-route="admin-author-update" asp-route-id="@Model.Id" ><i class="las la-pen text-secondary font-16"></i></a>
-        <a asp-route="admin-author-delete" asp-route-id="@Model.Id"><i class="las la-trash-alt text-secondary font-16"></i></a>
+        <a asp-route="admin-author-update" asp-route-id="@Model.Id" class="btn btn-primary update-button">Update</a>
+        <a asp-route="admin-author-delete" asp-route-id="@Model.Id" class="btn btn-danger remove-button">Delete</a>
     </td>
 </tr>

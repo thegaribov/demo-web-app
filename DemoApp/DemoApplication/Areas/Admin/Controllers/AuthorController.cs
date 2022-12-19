@@ -4,6 +4,7 @@ using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Net;
 
 namespace DemoApplication.Areas.Admin.Controllers
@@ -47,7 +48,7 @@ namespace DemoApplication.Areas.Admin.Controllers
                 CreatedAt = DateTime.Now,
                 UpdatedAt = DateTime.Now,
             };
-            
+
             await _dataContext.Authors.AddAsync(author);
             await _dataContext.SaveChangesAsync();
 
@@ -56,6 +57,21 @@ namespace DemoApplication.Areas.Admin.Controllers
             var listItemPartialView = PartialView("Partials/Author/_ListItem", responseModel);
             listItemPartialView.StatusCode = (int)HttpStatusCode.Created;
             return listItemPartialView;
+        }
+
+        [HttpDelete("delete/{id}", Name = "admin-author-delete")]
+        public async Task<IActionResult> DeleteAsync(int id)
+        {
+            var author = await _dataContext.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (author is null)
+            {
+                return NotFound();
+            }
+
+            _dataContext.Authors.Remove(author);
+            await _dataContext.SaveChangesAsync();
+
+            return NoContent();
         }
     }
 }

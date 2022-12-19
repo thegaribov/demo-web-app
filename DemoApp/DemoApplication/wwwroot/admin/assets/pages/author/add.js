@@ -1,8 +1,4 @@
-﻿
-console.log("Hello world")
-
-
-$("#save-add-modal").on("click", function () {
+﻿$("#save-add-modal").on("click", function () {
     let table = $("#authors-table");
     let form = $("#add-author-form");
     let container = $("#add-author-container");
