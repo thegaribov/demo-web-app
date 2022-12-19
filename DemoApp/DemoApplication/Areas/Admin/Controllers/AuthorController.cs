@@ -31,6 +31,8 @@ namespace DemoApplication.Areas.Admin.Controllers
             return View(model);
         }
 
+        #region Add
+
         [HttpPost("add", Name = "admin-author-add")]
         public async Task<IActionResult> AddAsync(AddViewModel? model)
         {
@@ -59,6 +61,34 @@ namespace DemoApplication.Areas.Admin.Controllers
             return listItemPartialView;
         }
 
+        #endregion
+
+        [HttpGet("update/{id}", Name = "admin-author-update")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id)
+        {
+            var author = await _dataContext.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (author is null)
+            {
+                return NotFound();
+            }
+
+            var model = new UpdateViewModel
+            {
+                FirstName = author.FirstName,
+                LastName = author.LastName
+            };
+
+            return PartialView("Partials/Author/_Update", model);
+        }
+
+        //[HttpPut("update/{id}", Name = "admin-author-update")]
+        //public async Task<IActionResult> UpdateAsync(int id)
+        //{
+
+        //}
+
+        #region Delete
+
         [HttpDelete("delete/{id}", Name = "admin-author-delete")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
@@ -73,5 +103,7 @@ namespace DemoApplication.Areas.Admin.Controllers
 
             return NoContent();
         }
+
+        #endregion
     }
 }

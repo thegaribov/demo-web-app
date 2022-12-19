@@ -1,0 +1,21 @@
+﻿@using DemoApplication.Areas.Admin.ViewModels.Author
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model UpdateViewModel
+
+<form id="update-author-form" class="form-horizontal auth-form my-4">
+    <div class="form-group">
+        <label asp-for="FirstName"></label>
+        <div class="input-group mb-3">
+            <input asp-for="FirstName" class="form-control" placeholder="Enter username">
+            <span asp-validation-for="FirstName" class="text-danger"></span>
+        </div>
+    </div><!--end form-group-->
+
+    <div class="form-group">
+        <label asp-for="LastName"></label>
+        <div class="input-group mb-3">
+            <input asp-for="LastName" class="form-control" placeholder="Enter password">
+            <span asp-validation-for="LastName" class="text-danger"></span>
+        </div>
+    </div><!--end form-group-->
+</form><!--end form-->
