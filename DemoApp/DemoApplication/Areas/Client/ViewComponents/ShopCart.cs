@@ -25,5 +25,6 @@ namespace DemoApplication.Areas.Client.ViewComponents
 
             return View(productsCookieViewModel);
         }
+
     }
 }

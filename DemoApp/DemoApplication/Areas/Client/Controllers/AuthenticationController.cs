@@ -1,6 +1,7 @@
 ﻿using DemoApplication.Areas.Client.ViewModels.Authentication;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
@@ -15,10 +16,12 @@ namespace DemoApplication.Controllers
     public class AuthenticationController : Controller
     {
         private readonly DataContext _dbContext;
+        private readonly IUserService _userService;
 
-        public AuthenticationController(DataContext dbContext)
+        public AuthenticationController(DataContext dbContext, IUserService userService)
         {
             _dbContext = dbContext;
+            _userService = userService;
         }
 
         #region Login and Logout
@@ -26,33 +29,24 @@ namespace DemoApplication.Controllers
         [HttpGet("login", Name = "client-auth-login")]
         public async Task<IActionResult> LoginAsync()
         {
-            var model = new LoginViewModel();
-            return View(model);
+            return View(new LoginViewModel());
         }
 
-
         [HttpPost("login", Name = "client-auth-login")]
-        public async Task<IActionResult> LoginAsync(LoginViewModel model)
+        public async Task<IActionResult> LoginAsync(LoginViewModel? model)
         {
             if (!ModelState.IsValid)
             {
                 return View(model);
             }
 
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Email == model.Email && u.Password == model.Password);
-            if (user is null)
+            if (!await _userService.CheckPasswordAsync(model!.Email, model!.Password))
             {
                 ModelState.AddModelError(String.Empty, "Email or password is not correct");
                 return View(model);
             }
 
-            var claims = new List<Claim>
-            {
-                new Claim("id", user.Id.ToString())
-            };
-            var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            var principal = new ClaimsPrincipal(identity);
-            await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, principal);
+            await _userService.SignInAsync(model!.Email, model!.Password);
 
             return RedirectToRoute("client-home-index");
         }
@@ -60,7 +54,7 @@ namespace DemoApplication.Controllers
         [HttpGet("logout", Name = "client-auth-logout")]
         public async Task<IActionResult> LogoutAsync()
         {
-            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            await _userService.SignOutAsync();
 
             return RedirectToRoute("client-home-index");
         }
@@ -72,9 +66,7 @@ namespace DemoApplication.Controllers
         [HttpGet("register", Name = "client-auth-register")]
         public ViewResult Register()
         {
-            var model = new RegisterViewModel();
-
-            return View(model);
+            return View(new RegisterViewModel());
         }
 
         [HttpPost("register", Name = "client-auth-register")]
@@ -85,18 +77,7 @@ namespace DemoApplication.Controllers
                 return View(model);
             }
 
-            var user = new User
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                Password = model.Password,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
-            };
-
-            await _dbContext.Users.AddAsync(user);
-            await _dbContext.SaveChangesAsync();
+            await _userService.CreateAsync(model);
 
             return RedirectToRoute("client-auth-login");
         }

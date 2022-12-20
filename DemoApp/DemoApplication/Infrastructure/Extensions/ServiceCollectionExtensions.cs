@@ -22,6 +22,8 @@ namespace DemoApplication.Infrastructure.Extensions
                     o.LoginPath = "/auth/login";
                 });
 
+            services.AddHttpContextAccessor();
+            
             services.ConfigureMvc();
 
             services.ConfigureDatabase(configuration);

@@ -1,4 +1,5 @@
 ﻿using DemoApplication.Database;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,30 +11,19 @@ namespace DemoApplication.Areas.Client.Controllers
     public class AccountController : Controller
     {
         private readonly DataContext _dataContext;
+        private readonly IUserService _userService;
 
-        public AccountController(DataContext dataContext)
+        public AccountController(DataContext dataContext, IUserService userService)
         {
             _dataContext = dataContext;
+            _userService = userService;
         }
 
         [HttpGet("dashboard", Name = "client-account-dashboard")]
         public IActionResult Dashboard()
         {
-            var idClaim = User.Claims.FirstOrDefault(C => C.Type == "id");
-            if (idClaim is null)
-            {
-                return NotFound();
-            }
-
-            var user = _dataContext.Users.FirstOrDefault(u => u.Id == Guid.Parse(idClaim.Value));
-            if (user is null)
-            {
-                return NotFound();
-            }
-
-
-
-
+            var user = _userService.CurrentUser;
+            var user2 = _userService.CurrentUser;
 
             return View();
         }
