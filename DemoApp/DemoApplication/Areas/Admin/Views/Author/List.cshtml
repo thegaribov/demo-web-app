@@ -51,6 +51,8 @@
 
 <!-- Update modal  -->
 <div class="modal fade bd-example-modal-lg" id="updateAuthorModal" tabindex="-1" role="dialog" aria-labelledby="updateAuthorModal" aria-hidden="true">
+    <input type="hidden" id="target-url" />
+    <input type="hidden" id="target-id" />
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -62,7 +64,7 @@
                 </div><!--end card-body-->
             </div><!--end modal-body-->
             <div class="modal-footer">
-                <button type="button" class="btn btn-de-primary btn-sm">Save</button>
+                <button type="button" class="btn btn-de-primary btn-sm" id="save-updates-button">Save</button>
                 <button type="button" class="btn btn-de-danger btn-sm" data-bs-dismiss="modal">Close</button>
             </div><!--end modal-footer-->
         </div><!--end modal-content-->

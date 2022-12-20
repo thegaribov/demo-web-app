@@ -20,6 +20,8 @@ namespace DemoApplication.Areas.Admin.Controllers
             _dataContext = dataContext;
         }
 
+        #region List
+
         [HttpGet("list", Name = "admin-author-list")]
         public IActionResult List()
         {
@@ -30,6 +32,8 @@ namespace DemoApplication.Areas.Admin.Controllers
 
             return View(model);
         }
+
+        #endregion
 
         #region Add
 
@@ -81,11 +85,31 @@ namespace DemoApplication.Areas.Admin.Controllers
             return PartialView("Partials/Author/_Update", model);
         }
 
-        //[HttpPut("update/{id}", Name = "admin-author-update")]
-        //public async Task<IActionResult> UpdateAsync(int id)
-        //{
+        [HttpPut("update/{id}", Name = "admin-author-update")]
+        public async Task<IActionResult> UpdateAsync([FromRoute] int id, [FromForm] UpdateViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var updatePartialResult = PartialView("Partials/Author/_Update", model);
+                updatePartialResult.StatusCode = (int)HttpStatusCode.BadRequest;
+                return updatePartialResult;
+            }
 
-        //}
+            var author = await _dataContext.Authors.FirstOrDefaultAsync(a => a.Id == id);
+            if (author is null)
+            {
+                return NotFound();
+            }
+
+            author.FirstName = model.FirstName;
+            author.LastName = model.LastName;
+            author.UpdatedAt = DateTime.Now;
+
+            await _dataContext.SaveChangesAsync();
+
+            var responseModel = new ListItemViewModel(author.Id, author.FirstName, author.LastName);
+            return PartialView("Partials/Author/_ListItem", responseModel);
+        }
 
         #region Delete
 

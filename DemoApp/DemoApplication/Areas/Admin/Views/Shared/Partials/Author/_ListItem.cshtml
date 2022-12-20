@@ -2,11 +2,11 @@
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @model ListItemViewModel
 
-<tr>
+<tr class="author-record" data-id="@Model.Id">
     <td>@Model.Name</td>
     <td>@Model.LastName</td>
     <td class="text-end">
-        <a asp-route="admin-author-update" asp-route-id="@Model.Id" data-bs-toggle="modal" data-bs-target="#updateAuthorModal" class="btn btn-primary">Update</a>
+        <a asp-route="admin-author-update" asp-route-id="@Model.Id" data-bs-toggle="modal" data-bs-target="#updateAuthorModal" class="btn btn-primary update-button">Update</a>
         <a asp-route="admin-author-delete" asp-route-id="@Model.Id" class="btn btn-danger remove-button">Delete</a>
     </td>
 </tr>
