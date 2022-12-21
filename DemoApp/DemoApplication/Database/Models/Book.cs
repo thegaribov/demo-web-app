@@ -14,5 +14,6 @@ namespace DemoApplication.Database.Models
         public Author Author { get; set; }
 
         public List<BookCategory>? BookCategories { get; set; }
+        //public List<BasketProduct>? BasketProducts { get; set; }
     }
 }

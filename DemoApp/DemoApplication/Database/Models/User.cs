@@ -11,5 +11,7 @@ namespace DemoApplication.Database.Models
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+        public Basket? Basket { get; set; }
     }
 }
