@@ -1,5 +1,7 @@
 ﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using DemoApplication.Areas.Client.ViewComponents;
+@using DemoApplication.Services.Abstracts;
+@inject IUserService userService;
 
 <!DOCTYPE html>
 <html lang="en">
@@ -53,6 +55,13 @@
                                     <li class="menu-item">
                                         <a asp-controller="home" asp-action="contact">Contact</a>
                                     </li>
+
+                                    @if (userService.IsAuthenticated)
+                                    {
+                                        <li class="menu-item">
+                                            <a asp-route="client-auth-logout">Logout</a>
+                                        </li>
+                                    }
                                 </ul>
                             </div>
                         </div>
@@ -85,10 +94,19 @@
                             <div class="main-navigation flex-lg-right">
                                 <div class="cart-widget">
                                     <div class="login-block">
-                                        <a asp-controller="authentication" asp-action="login" class="font-weight-bold">Login</a>
-                                        <br>
-                                        <span>or</span>
-                                        <a asp-controller="authentication" asp-action="register">Register</a>
+                                        @if (userService.IsAuthenticated)
+                                        {
+                                            <a asp-route="client-account-dashboard">
+                                                @userService.GetCurrentUserFullName()
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a asp-route="client-auth-login" class="font-weight-bold">Login</a>
+                                            <br>
+                                            <span>or</span>
+                                            <a asp-route="client-auth-register">Register</a>
+                                        }
                                     </div>
                                     <div class="cart-block">
                                         @await Component.InvokeAsync(nameof(ShopCart));

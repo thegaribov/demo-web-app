@@ -29,6 +29,11 @@ namespace DemoApplication.Controllers
         [HttpGet("login", Name = "client-auth-login")]
         public async Task<IActionResult> LoginAsync()
         {
+            if (_userService.IsAuthenticated)
+            {
+                return RedirectToRoute("client-account-dashboard");
+            }
+
             return View(new LoginViewModel());
         }
 

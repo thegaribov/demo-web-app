@@ -1,0 +1,69 @@
+﻿@{
+	Layout = "_Layout";
+}
+
+<section class="breadcrumb-section">
+	<h2 class="sr-only">Site Breadcrumb</h2>
+	<div class="container">
+		<div class="breadcrumb-contents">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb">
+					<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+					<li class="breadcrumb-item active">My Account</li>
+				</ol>
+			</nav>
+		</div>
+	</div>
+</section>
+
+<div class="page-section inner-page-sec-padding">
+	<div class="container">
+		<div class="row">
+			<div class="col-12">
+				<div class="row">
+					<!-- My Account Tab Menu Start -->
+					<div class="col-lg-3 col-12">
+						<div class="myaccount-tab-menu nav" role="tablist">
+							<a asp-route="client-account-dashboard">
+								<!-- class : active -->
+								<i class="fas fa-tachometer-alt"></i>
+								Dashboard
+							</a>
+							<a asp-route="client-account-orders">
+								<i class="fa fa-cart-arrow-down"></i>
+								Orders
+							</a>
+							<a asp-route="client-account-downloads">
+								<i class="fas fa-download"></i>
+								Download
+							</a>
+							<a href="#payment-method" data-toggle="tab">
+								<i class="fa fa-credit-card"></i>
+								Payment
+								Method
+							</a>
+							<a href="#address-edit" data-toggle="tab">
+								<i class="fa fa-map-marker"></i>
+								address
+							</a>
+							<a href="#account-info" data-toggle="tab">
+								<i class="fa fa-user"></i> Account
+								Details
+							</a>
+							<a asp-route="client-auth-logout">
+								<i class="fas fa-sign-out-alt"></i> Logout
+							</a>
+						</div>
+					</div>
+					<!-- My Account Tab Menu End -->
+
+					<!-- My Account Tab Content Start -->
+
+					@RenderBody()
+
+					<!-- My Account Tab Content End -->
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

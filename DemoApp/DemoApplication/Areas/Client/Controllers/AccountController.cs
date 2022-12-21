@@ -27,5 +27,14 @@ namespace DemoApplication.Areas.Client.Controllers
 
             return View();
         }
+
+        [HttpGet("orders", Name = "client-account-orders")]
+        public IActionResult Orders()
+        {
+            var user = _userService.CurrentUser;
+            var user2 = _userService.CurrentUser;
+
+            return View();
+        }
     }
 }

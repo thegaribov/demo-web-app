@@ -22,6 +22,11 @@ namespace DemoApplication.Services.Abstracts
             _httpContextAccessor = httpContextAccessor;
         }
 
+        public bool IsAuthenticated 
+        { 
+            get => _httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated;  
+        }
+
         public User CurrentUser
         {
             get
@@ -39,6 +44,12 @@ namespace DemoApplication.Services.Abstracts
 
                 return _currentUser;
             }
+        }
+
+
+        public string GetCurrentUserFullName()
+        {
+            return $"{CurrentUser.FirstName} {CurrentUser.LastName}";
         }
 
         public async Task<bool> CheckPasswordAsync(string? email, string? password)
