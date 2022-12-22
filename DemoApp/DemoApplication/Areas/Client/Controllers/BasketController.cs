@@ -1,6 +1,8 @@
 ﻿using DemoApplication.Areas.Client.ViewComponents;
 using DemoApplication.Areas.Client.ViewModels.Basket;
 using DemoApplication.Database;
+using DemoApplication.Database.Models;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -13,10 +15,12 @@ namespace DemoApplication.Areas.Client.Controllers
     public class BasketController : Controller
     {
         private readonly DataContext _dataContext;
+        private readonly IBasketService _basketService;
 
-        public BasketController(DataContext dataContext)
+        public BasketController(DataContext dataContext, IBasketService basketService)
         {
             _dataContext = dataContext;
+            _basketService = basketService;
         }
 
 
@@ -29,26 +33,13 @@ namespace DemoApplication.Areas.Client.Controllers
                 return NotFound();
             }
 
-            var productCookieValue = HttpContext.Request.Cookies["products"];
-            var productsCookieViewModel = productCookieValue is not null 
-                ?  JsonSerializer.Deserialize<List<ProductCookieViewModel>>(productCookieValue)
-                : new List<ProductCookieViewModel> { };
-
-            var productCookieViewModel = productsCookieViewModel!.FirstOrDefault(pcvm => pcvm.Id == id);
-            if (productCookieViewModel is null)
+            var productsCookieViewModel = await _basketService.AddBasketProductAsync(product);
+            if (productsCookieViewModel.Any())
             {
-                productsCookieViewModel
-                    !.Add(new ProductCookieViewModel(product.Id, product.Title, string.Empty, 1, product.Price, product.Price));
-            }
-            else
-            {
-                productCookieViewModel.Quantity += 1;
-                productCookieViewModel.Total = productCookieViewModel.Quantity * productCookieViewModel.Price;
+                return ViewComponent(nameof(ShopCart), productsCookieViewModel);
             }
 
-            HttpContext.Response.Cookies.Append("products", JsonSerializer.Serialize(productsCookieViewModel));
-
-            return ViewComponent(nameof(ShopCart), productsCookieViewModel);
+            return ViewComponent(nameof(ShopCart));
         }
 
         [HttpGet("delete/{id}", Name = "client-basket-delete")]
