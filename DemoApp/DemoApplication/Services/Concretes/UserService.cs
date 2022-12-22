@@ -1,4 +1,5 @@
 ﻿using DemoApplication.Areas.Client.ViewModels.Authentication;
+using DemoApplication.Areas.Client.ViewModels.Basket;
 using DemoApplication.Contracts.Identity;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Text.Json;
 
 namespace DemoApplication.Services.Abstracts
 {
@@ -16,15 +18,17 @@ namespace DemoApplication.Services.Abstracts
         private readonly IHttpContextAccessor _httpContextAccessor;
         private User _currentUser;
 
-        public UserService(DataContext dataContext, IHttpContextAccessor httpContextAccessor)
+        public UserService(
+            DataContext dataContext,
+            IHttpContextAccessor httpContextAccessor)
         {
             _dataContext = dataContext;
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public bool IsAuthenticated 
-        { 
-            get => _httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated;  
+        public bool IsAuthenticated
+        {
+            get => _httpContextAccessor.HttpContext!.User.Identity!.IsAuthenticated;
         }
 
         public User CurrentUser
@@ -82,18 +86,68 @@ namespace DemoApplication.Services.Abstracts
 
         public async Task CreateAsync(RegisterViewModel model)
         {
-            var user = new User
-            {
-                FirstName = model.FirstName,
-                LastName = model.LastName,
-                Email = model.Email,
-                Password = model.Password,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now
-            };
+            var user = await CreateUserAsync();
+            var basket = await CreateBasketAsync();
+            await CreteBasketProductsAsync();
 
-            await _dataContext.Users.AddAsync(user);
             await _dataContext.SaveChangesAsync();
+
+
+
+
+            async Task<User> CreateUserAsync()
+            {
+                var user = new User
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Email = model.Email,
+                    Password = model.Password,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now
+                };
+                await _dataContext.Users.AddAsync(user);
+
+                return user;
+            }
+
+            async Task<Basket> CreateBasketAsync()
+            {
+                //Create basket process
+                var basket = new Basket
+                {
+                    User = user,
+                    CreatedAt = DateTime.Now,
+                    UpdatedAt = DateTime.Now,
+                };
+                await _dataContext.Baskets.AddAsync(basket);
+
+                return basket;
+            }
+
+            async Task CreteBasketProductsAsync()
+            {
+                //Add products to basket if cookie exists
+                var productCookieValue = _httpContextAccessor.HttpContext!.Request.Cookies["products"];
+                if (productCookieValue is not null)
+                {
+                    var productsCookieViewModel = JsonSerializer.Deserialize<List<ProductCookieViewModel>>(productCookieValue);
+                    foreach (var productCookieViewModel in productsCookieViewModel)
+                    {
+                        var book = await _dataContext.Books.FirstOrDefaultAsync(b => b.Id == productCookieViewModel.Id);
+                        var basketProduct = new BasketProduct
+                        {
+                            Basket = basket,
+                            BookId = book!.Id,
+                            Quantity = productCookieViewModel.Quantity,
+                            CreatedAt = DateTime.Now,
+                            UpdatedAt = DateTime.Now
+                        };
+
+                        await _dataContext.BasketProducts.AddAsync(basketProduct);
+                    }
+                }
+            }                 
         }
     }
 }
