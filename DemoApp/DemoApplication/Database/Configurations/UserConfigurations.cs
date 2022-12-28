@@ -16,6 +16,11 @@ namespace DemoApplication.Database.Configurations
                .HasOne(u => u.Basket)
                .WithOne(b => b.User)
                .HasForeignKey<Basket>(u => u.UserId);
+
+            builder
+               .HasOne(u => u.Role)
+               .WithMany(r => r.Users)
+               .HasForeignKey(u => u.RoleId);
         }
     }
 }

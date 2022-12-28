@@ -4,13 +4,14 @@ using DemoApplication.Contracts.Identity;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Exceptions;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using System.Text.Json;
 
-namespace DemoApplication.Services.Abstracts
+namespace DemoApplication.Services.Concretes
 {
     public class UserService : IUserService
     {
@@ -61,22 +62,28 @@ namespace DemoApplication.Services.Abstracts
             return await _dataContext.Users.AnyAsync(u => u.Email == email && u.Password == password);
         }
 
-        public async Task SignInAsync(Guid id)
+        public async Task SignInAsync(Guid id, string? role = null)
         {
             var claims = new List<Claim>
             {
                 new Claim(CustomClaimNames.ID, id.ToString())
             };
+
+            if (role is not null)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+
             var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
             var userPrincipal = new ClaimsPrincipal(identity);
 
             await _httpContextAccessor.HttpContext!.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, userPrincipal);
         }
 
-        public async Task SignInAsync(string? email, string? password)
+        public async Task SignInAsync(string? email, string? password, string? role = null)
         {
             var user = await _dataContext.Users.FirstAsync(u => u.Email == email && u.Password == password);
-            await SignInAsync(user.Id);
+            await SignInAsync(user.Id, role);
         }
 
         public async Task SignOutAsync()
@@ -147,7 +154,7 @@ namespace DemoApplication.Services.Abstracts
                         await _dataContext.BasketProducts.AddAsync(basketProduct);
                     }
                 }
-            }                 
+            }
         }
     }
 }

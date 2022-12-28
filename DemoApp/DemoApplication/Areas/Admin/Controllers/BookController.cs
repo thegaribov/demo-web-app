@@ -2,6 +2,7 @@
 using DemoApplication.Areas.Admin.ViewModels.Book.Add;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/book")]
+    [Authorize(Roles = "admin")]
     public class BookController : Controller
     {
         private readonly DataContext _dataContext;

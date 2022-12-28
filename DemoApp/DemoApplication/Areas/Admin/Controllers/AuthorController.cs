@@ -11,6 +11,7 @@ namespace DemoApplication.Areas.Admin.Controllers
 {
     [Area("admin")]
     [Route("admin/author")]
+    [Authorize(Roles = "admin")]
     public class AuthorController : Controller
     {
         private readonly DataContext _dataContext;

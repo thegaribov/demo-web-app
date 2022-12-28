@@ -4,6 +4,7 @@ using DemoApplication.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DemoApplication.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20221228135500_User_Role_realtionship")]
+    partial class User_Role_realtionship
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,29 +237,6 @@ namespace DemoApplication.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Roles", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "admin",
-                            UpdatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "moderator",
-                            UpdatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Name = "hr",
-                            UpdatedAt = new DateTime(2022, 12, 27, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        });
                 });
 
             modelBuilder.Entity("DemoApplication.Database.Models.User", b =>

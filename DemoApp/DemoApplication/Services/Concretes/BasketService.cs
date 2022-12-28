@@ -4,6 +4,7 @@ using DemoApplication.Contracts.Identity;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Exceptions;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
@@ -11,7 +12,7 @@ using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Text.Json;
 
-namespace DemoApplication.Services.Abstracts
+namespace DemoApplication.Services.Concretes
 {
     public class BasketService : IBasketService
     {
@@ -68,7 +69,7 @@ namespace DemoApplication.Services.Abstracts
                 }
 
                 await _dataContext.SaveChangesAsync();
-            } 
+            }
 
 
             //Add product to cookie if user is not authenticated 

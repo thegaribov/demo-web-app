@@ -10,8 +10,8 @@ namespace DemoApplication.Services.Abstracts
 
         Task<bool> CheckPasswordAsync(string? email, string? password);
         string GetCurrentUserFullName();
-        Task SignInAsync(Guid id);
-        Task SignInAsync(string? email, string? password);
+        Task SignInAsync(Guid id, string? role = null);
+        Task SignInAsync(string? email, string? password, string? role = null);
         Task CreateAsync(RegisterViewModel model);
         Task SignOutAsync();
 
