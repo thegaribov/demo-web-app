@@ -110,8 +110,6 @@ namespace DemoApplication.Services.Concretes
                     LastName = model.LastName,
                     Email = model.Email,
                     Password = model.Password,
-                    CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now
                 };
                 await _dataContext.Users.AddAsync(user);
 
@@ -124,8 +122,6 @@ namespace DemoApplication.Services.Concretes
                 var basket = new Basket
                 {
                     User = user,
-                    CreatedAt = DateTime.Now,
-                    UpdatedAt = DateTime.Now,
                 };
                 await _dataContext.Baskets.AddAsync(basket);
 
@@ -147,8 +143,6 @@ namespace DemoApplication.Services.Concretes
                             Basket = basket,
                             BookId = book!.Id,
                             Quantity = productCookieViewModel.Quantity,
-                            CreatedAt = DateTime.Now,
-                            UpdatedAt = DateTime.Now
                         };
 
                         await _dataContext.BasketProducts.AddAsync(basketProduct);

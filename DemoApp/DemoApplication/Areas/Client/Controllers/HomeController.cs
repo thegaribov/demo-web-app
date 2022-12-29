@@ -52,7 +52,6 @@ namespace DemoApplication.Areas.Client.Controllers
                 Email = contactViewModel.Email,
                 Message = contactViewModel.Message,
                 Phone = contactViewModel.PhoneNumber,
-                CreatedAt = DateTime.Now
             });
 
             return RedirectToAction(nameof(Index));

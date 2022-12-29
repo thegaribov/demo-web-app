@@ -61,8 +61,6 @@ namespace DemoApplication.Services.Concretes
                         Quantity = 1,
                         BasketId = basket.Id,
                         BookId = book.Id,
-                        CreatedAt = DateTime.Now,
-                        UpdatedAt = DateTime.Now
                     };
 
                     await _dataContext.BasketProducts.AddAsync(basketProduct);

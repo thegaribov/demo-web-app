@@ -52,8 +52,6 @@ namespace DemoApplication.Areas.Admin.Controllers
             {
                 FirstName = model.FirstName,
                 LastName = model.LastName,
-                CreatedAt = DateTime.Now,
-                UpdatedAt = DateTime.Now,
             };
 
             await _dataContext.Authors.AddAsync(author);
@@ -76,6 +74,7 @@ namespace DemoApplication.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
 
             var model = new UpdateViewModel
             {
@@ -104,7 +103,6 @@ namespace DemoApplication.Areas.Admin.Controllers
 
             author.FirstName = model.FirstName;
             author.LastName = model.LastName;
-            author.UpdatedAt = DateTime.Now;
 
             await _dataContext.SaveChangesAsync();
 

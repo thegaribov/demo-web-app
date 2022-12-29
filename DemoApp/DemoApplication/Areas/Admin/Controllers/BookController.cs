@@ -118,7 +118,6 @@ namespace DemoApplication.Areas.Admin.Controllers
                 {
                     Title = model.Title,
                     Price = model.Price,
-                    CreatedAt = DateTime.Now,
                     AuthorId = model.AuthorId,
                 };
 
@@ -230,7 +229,6 @@ namespace DemoApplication.Areas.Admin.Controllers
                 book.Title = model.Title;
                 book.AuthorId = model.AuthorId;
                 book.Price = model.Price;
-                book.UpdatedAt = DateTime.Now;
 
                 var categoriesInDb = book.BookCategories.Select(bc => bc.CategoryId).ToList();
                 var categoriesToRemove = categoriesInDb.Except(model.CategoryIds).ToList();

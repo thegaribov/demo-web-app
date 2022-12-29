@@ -70,7 +70,6 @@ namespace DemoApplication.Areas.Client.Controllers
                 Title = model.Title,
                 //Author = model.Author,
                 Price = model.Price.Value,
-                CreatedAt = DateTime.Now
             });
 
             return RedirectToAction(nameof(List));
