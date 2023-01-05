@@ -12,6 +12,7 @@ namespace DemoApplication.Infrastructure.Configurations
             services.AddScoped<IEmailService, SMTPService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBasketService, BasketService>();
+            services.AddSingleton<IFileService, FileService>();
         }
     }
 }

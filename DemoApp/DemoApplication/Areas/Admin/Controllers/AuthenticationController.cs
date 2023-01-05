@@ -30,11 +30,6 @@ namespace DemoApplication.Areas.Admin.Controllers
         [HttpGet("login", Name = "admin-auth-login")]
         public async Task<IActionResult> LoginAsync()
         {
-            if (_userService.IsAuthenticated)
-            {
-                return RedirectToRoute("admin-author-list");
-            }
-
             return View(new LoginViewModel());
         }
 

@@ -1,7 +1,9 @@
 ﻿using DemoApplication.Areas.Admin.ViewModels.Book;
 using DemoApplication.Areas.Admin.ViewModels.Book.Add;
+using DemoApplication.Contracts.File;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
+using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +20,16 @@ namespace DemoApplication.Areas.Admin.Controllers
     {
         private readonly DataContext _dataContext;
         private readonly ILogger<BookController> _logger;
+        private readonly IFileService _fileService;
 
-        public BookController(DataContext dataContext, ILogger<BookController> logger)
+        public BookController(
+            DataContext dataContext, 
+            ILogger<BookController> logger,
+            IFileService fileService)
         {
             _dataContext = dataContext;
             _logger = logger;
+            _fileService = fileService;
         }
 
 
@@ -67,7 +74,7 @@ namespace DemoApplication.Areas.Admin.Controllers
         }
 
         [HttpPost("add", Name = "admin-book-add")]
-        public IActionResult Add(AddViewModel model)
+        public async Task<IActionResult> Add(AddViewModel model)
         {
             if (!ModelState.IsValid)
             {
@@ -91,8 +98,24 @@ namespace DemoApplication.Areas.Admin.Controllers
 
             }
 
+            //string path = "wwwroot/client/custom-files/books";
 
-            AddBook();
+            //if (!Directory.Exists(path))
+            //{
+            //    Directory.CreateDirectory(path);
+            //}
+
+            //var imageNameInSystem = $"{Guid.NewGuid()}{Path.GetExtension(model.Image!.FileName)}";
+            //var uploadPath = $"{path}/{imageNameInSystem}";
+
+            ////Connection
+            //using FileStream fileStream = new FileStream(uploadPath, FileMode.Create);
+            //await model.Image.CopyToAsync(fileStream);
+
+            var imageNameInSystem = await _fileService.UploadAsync(model!.Image, UploadDirectory.Book);
+
+            AddBook(model.Image!.FileName, imageNameInSystem);
+
 
             return RedirectToRoute("admin-book-list");
 
@@ -112,13 +135,15 @@ namespace DemoApplication.Areas.Admin.Controllers
                 return View(model);
             }
 
-            void AddBook()
+            void AddBook(string imageName, string imageNameInSystem)
             {
                 var book = new Book
                 {
                     Title = model.Title,
                     Price = model.Price,
                     AuthorId = model.AuthorId,
+                    ImageName = imageName,
+                    ImageNameInFileSystem = imageNameInSystem
                 };
 
                 _dataContext.Books.Add(book);
@@ -137,6 +162,8 @@ namespace DemoApplication.Areas.Admin.Controllers
                 _dataContext.SaveChanges();
             }
         }
+
+
 
 
         #endregion
