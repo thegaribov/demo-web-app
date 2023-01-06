@@ -2,7 +2,7 @@
 
 namespace DemoApplication.Areas.Admin.ViewModels.Book.Add
 {
-    public class AddViewModel
+    public class AddViewModel 
     {
         public int? Id { get; set; }
 
@@ -18,6 +18,8 @@ namespace DemoApplication.Areas.Admin.ViewModels.Book.Add
 
         [Required]
         public IFormFile? Image { get; set; }
+
+        public string? ImageUrl { get; set; }
 
 
         public List<AuthorListItemViewModel>? Authors { get; set; }

@@ -1107,4 +1107,8 @@
     <PackageReference Include="MimeKit" Version="3.4.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Areas\Admin\ViewModels\Book\UpdateViewModel\" />
+  </ItemGroup>
+
 </Project>
