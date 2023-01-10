@@ -15,5 +15,11 @@ namespace DemoApplication.Contracts.Email
             Subject = subject;
             Content = content;
         }
+
+        public MessageDto(string to, string subject, string content)
+            : this(new List<string> { to }, subject, content)
+        {
+
+        }
     }
 }

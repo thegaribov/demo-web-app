@@ -16,5 +16,9 @@ namespace DemoApplication.Database.Models
 
         public int? RoleId { get; set; }
         public Role? Role { get; set; }
+
+        public UserActivation? UserActivation { get; set; }
+
+        public bool IsEmailConfirmed { get; set; }
     }
 }

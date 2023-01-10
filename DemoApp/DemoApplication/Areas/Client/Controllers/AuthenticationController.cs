@@ -51,6 +51,12 @@ namespace DemoApplication.Controllers
                 return View(model);
             }
 
+            if (!await _userService.CheckEmailConfirmedAsync(model!.Email))
+            {
+                ModelState.AddModelError(String.Empty, "Email is not confirmed");
+                return View(model);
+            }
+
             await _userService.SignInAsync(model!.Email, model!.Password);
 
             return RedirectToRoute("client-home-index");
@@ -83,6 +89,32 @@ namespace DemoApplication.Controllers
             }
 
             await _userService.CreateAsync(model);
+
+            return RedirectToRoute("client-auth-login");
+        }
+
+        [HttpGet("activate/{token}", Name = "client-auth-activate")]
+        public async Task<IActionResult> ActivateAsync([FromRoute] string token)
+        {
+            var userActivation = await _dbContext.UserActivations
+                .Include(ua => ua.User)
+                .FirstOrDefaultAsync(ua =>
+                    !ua!.User!.IsEmailConfirmed && 
+                    ua.ActivationToken == token);
+
+            if (userActivation is null)
+            {
+                return NotFound();
+            }
+
+            if (DateTime.Now > userActivation!.ExpireDate)
+            {
+                return Ok("Token expired olub teessufler");
+            }
+
+            userActivation!.User!.IsEmailConfirmed = true;
+
+            await _dbContext.SaveChangesAsync();
 
             return RedirectToRoute("client-auth-login");
         }

@@ -14,6 +14,7 @@ namespace DemoApplication.Services.Abstracts
         Task SignInAsync(string? email, string? password, string? role = null);
         Task CreateAsync(RegisterViewModel model);
         Task SignOutAsync();
+        Task<bool> CheckEmailConfirmedAsync(string? email);
 
     }
 }
