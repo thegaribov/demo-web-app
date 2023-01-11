@@ -1,4 +1,5 @@
-﻿using DemoApplication.Database;
+﻿using AspNetCore.IServiceCollection.AddIUrlHelper;
+using DemoApplication.Database;
 using DemoApplication.Infrastructure.Configurations;
 using DemoApplication.Options;
 using DemoApplication.Services.Abstracts;
@@ -24,7 +25,9 @@ namespace DemoApplication.Infrastructure.Extensions
                 });
 
             services.AddHttpContextAccessor();
-            
+
+            services.AddUrlHelper();
+
             services.ConfigureMvc();
 
             services.ConfigureDatabase(configuration);

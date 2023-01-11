@@ -8,7 +8,9 @@ using DemoApplication.Exceptions;
 using DemoApplication.Services.Abstracts;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using System.Security.Claims;
 using System.Text.Json;
 
@@ -18,17 +20,17 @@ namespace DemoApplication.Services.Concretes
     {
         private readonly DataContext _dataContext;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        private readonly IEmailService _emailService;
+        private readonly IUserActivationService _userActivationService;
         private User _currentUser;
 
         public UserService(
             DataContext dataContext,
             IHttpContextAccessor httpContextAccessor,
-            IEmailService emailService)
+            IUserActivationService userActivationService)
         {
             _dataContext = dataContext;
             _httpContextAccessor = httpContextAccessor;
-            _emailService = emailService;
+            _userActivationService = userActivationService;
         }
 
         public bool IsAuthenticated
@@ -55,7 +57,7 @@ namespace DemoApplication.Services.Concretes
             }
         }
 
-        public async Task<bool> CheckEmailConfirmedAsync(string? email) 
+        public async Task<bool> CheckEmailConfirmedAsync(string? email)
         {
             return await _dataContext.Users.AnyAsync(u => u.Email == email && u.IsEmailConfirmed);
         }
@@ -105,11 +107,10 @@ namespace DemoApplication.Services.Concretes
             var user = await CreateUserAsync();
             var basket = await CreateBasketAsync();
             await CreteBasketProductsAsync();
-            await SendActivationUrl(user);
+
+            await _userActivationService.SendActivationUrlAsync(user);
 
             await _dataContext.SaveChangesAsync();
-
-
 
 
             async Task<User> CreateUserAsync()
@@ -160,39 +161,6 @@ namespace DemoApplication.Services.Concretes
                 }
             }
 
-            async Task SendActivationUrl(User user)
-            {
-                string token = GenerateActivationToken();
-                string activationUrl = GenerateActivationUrl(token);
-                DateTime expireDate = DateTime.Now.AddMinutes(1);
-
-                var userActivation = new UserActivation
-                {
-                    User = user,
-                    ActivationToken = token,
-                    ActivationUrl = activationUrl,
-                    ExpireDate = expireDate,
-                };
-
-                await _dataContext.UserActivations.AddAsync(userActivation);
-
-                string body = EmailMessages.Body.ACTIVATION_MESSAGE
-                    .Replace(EmailMessageKeywords.ACTIVATION_URL, activationUrl);
-
-                string subject = EmailMessages.Subject.ACTIVATION_MESSAGE;
-
-                _emailService.Send(new MessageDto(user.Email, subject, body));
-            }
-        }
-
-        private string GenerateActivationToken()
-        {
-            return Guid.NewGuid().ToString();
-        }
-
-        private string GenerateActivationUrl(string token)
-        {
-            return $"https://localhost:7026/auth/activate/{token}";
         }
     }
 }

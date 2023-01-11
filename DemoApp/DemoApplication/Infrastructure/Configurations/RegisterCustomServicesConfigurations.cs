@@ -13,6 +13,7 @@ namespace DemoApplication.Infrastructure.Configurations
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IBasketService, BasketService>();
             services.AddSingleton<IFileService, FileService>();
+            services.AddScoped<IUserActivationService, UserActivationService>();
         }
     }
 }
