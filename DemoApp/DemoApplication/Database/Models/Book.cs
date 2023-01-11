@@ -16,7 +16,6 @@ namespace DemoApplication.Database.Models
         public List<BookCategory>? BookCategories { get; set; }
         public List<BasketProduct>? BasketProducts { get; set; }
 
-        public string? ImageName { get; set; } //<original_name>.<extension>
-        public string? ImageNameInFileSystem { get; set; } //Guid.<extension>
+        public List<BookImage>? BookImages { get; set; }
     }
 }

@@ -17,7 +17,7 @@ namespace DemoApplication.Areas.Admin.ViewModels.Book.Add
         public int AuthorId { get; set; }
 
         [Required]
-        public IFormFile? Image { get; set; }
+        public List<IFormFile>? Images { get; set; }
 
         public string? ImageUrl { get; set; }
 

@@ -1,5 +1,6 @@
 ﻿using DemoApplication.Areas.Client.ViewModels.Home.Contact;
 using DemoApplication.Areas.Client.ViewModels.Home.Index;
+using DemoApplication.Contracts.File;
 using DemoApplication.Database;
 using DemoApplication.Database.Models;
 using DemoApplication.Services.Abstracts;
@@ -28,14 +29,21 @@ namespace DemoApplication.Areas.Client.Controllers
             {
                 Books = await _dbContext.Books
                 .Select(b => new BookListItemViewModel(
-                    b.Id, 
-                    b.Title, 
-                    $"{b.Author.FirstName} {b.Author.LastName}", 
+                    b.Id,
+                    b.Title,
+                    $"{b.Author.FirstName} {b.Author.LastName}",
                     b.Price,
-                    fileService.GetFileUrl(b.ImageNameInFileSystem, Contracts.File.UploadDirectory.Book)
-                    ))
+                    b.BookImages!.Take(1)!.FirstOrDefault()! != null
+                        ? fileService.GetFileUrl(b.BookImages!.Take(1)!.FirstOrDefault()!.ImageNameInFileSystem!, UploadDirectory.Book)
+                        : string.Empty,
+                    b.BookImages!.Skip(1).Take(1)!.FirstOrDefault()! != null
+                        ? fileService.GetFileUrl(b.BookImages!.Skip(1)!.Take(1)!.FirstOrDefault()!.ImageNameInFileSystem!, UploadDirectory.Book)
+                        : string.Empty)
+                )
                 .ToListAsync(),
             };
+
+
 
             return View(model);
         }
