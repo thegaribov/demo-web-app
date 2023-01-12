@@ -39,6 +39,7 @@
                                     <button type="submit" form="book-form-@book.Id">
                                         <i class="las la-trash-alt text-secondary font-16"></i>
                                     </button>
+                                    <a asp-route="admin-book-image-list" asp-route-bookId="@book.Id"><i class="las la-pen text-secondary font-16"></i></a>
                                 </td>
                             </tr>
                         }

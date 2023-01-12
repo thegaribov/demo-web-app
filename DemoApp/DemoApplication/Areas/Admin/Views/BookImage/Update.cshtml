@@ -1,0 +1,49 @@
+﻿@*@model AddViewModel
+<div class="row">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <h4 class="card-title">Books</h4>
+            </div>
+            <div class="card-body">
+                <div class="general-label">
+                    <form method="POST" asp-route="admin-book-update" asp-route-id="@Model.Id" enctype="multipart/form-data" >
+                        <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+                        <div class="form-group">
+                            <label>Categories</label>
+                            <select asp-for="CategoryIds" asp-items="@(new SelectList(Model.Categories, nameof(CategoryListItemViewModel.Id), nameof(CategoryListItemViewModel.Title)))" class="form-select">                            </select>
+                            <span asp-validation-for="CategoryIds" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Authors</label>
+                            <select asp-for="AuthorId" asp-items="@(new SelectList(Model.Authors, nameof(AuthorListItemViewModel.Id), nameof(AuthorListItemViewModel.FullName)))" class="form-select">                            </select>
+                            <span asp-validation-for="AuthorId" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Title</label>
+                            <input asp-for="Title" class="form-control">
+                            <span asp-validation-for="Title" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Price</label>
+                            <input asp-for="Price" class="form-control">
+                            <span asp-validation-for="Price" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label>Image</label>
+                            <input asp-for="Images" class="form-control">
+                            <span asp-validation-for="Images" class="text-danger"></span>
+                        </div>
+                        <div class="form-group mt-2">
+                            <input asp-for="ImageUrl" type="hidden">
+                            <img src="~/@Model.ImageUrl" width="20%" />
+                        </div>
+
+                        <button type="submit" class="btn btn-primary  mt-2">Submit</button>
+                    </form>
+                </div>
+            </div><!--end card-body-->
+        </div><!--end card-->
+    </div>
+</div>*@

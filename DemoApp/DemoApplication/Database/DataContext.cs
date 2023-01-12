@@ -24,6 +24,7 @@ namespace DemoApplication.Database
         public DbSet<Basket> Baskets { get; set; }
         public DbSet<BasketProduct> BasketProducts { get; set; }
         public DbSet<UserActivation> UserActivations { get; set; }
+        public DbSet<BookImage> BookImages { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

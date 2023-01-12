@@ -1,0 +1,61 @@
+﻿@model BookImagesViewModel
+
+<div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="page-title-box">
+                <div class="float-end">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a asp-route="admin-book-list">Books</a>
+                        </li><!--end nav-item-->
+                        <li class="breadcrumb-item active">Book image</li>
+                    </ol>
+                </div>
+                <h4 class="page-title">Books</h4>
+            </div><!--end page-title-box-->
+        </div><!--end col-->
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="row justify-content-end">
+        <div class="">
+            <a asp-route="admin-book-image-add" asp-route-bookId="@Model.BookId"  target="_blank" class="btn btn-secondary">Add new book image</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12">
+    <div class="card">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-striped mb-0">
+                    <thead>
+                        <tr>
+                            <th>Image</th>
+                            <th>Created at</th>
+                            <th class="text-end">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var bookImage in Model.Images!)
+                        {
+                            <tr>
+                                <td><img src="~/@bookImage.ImageUrL" width="20%" /></td>
+                                <td>@bookImage.CreatedAt.ToString("dd/MM/yyyy")</td>
+                                <td class="text-end">
+                                    <a asp-route="admin-book-image-update" asp-route-id="@bookImage.Id"><i class="las la-pen text-secondary font-16"></i></a>
+                                    <form method="POST" asp-route="admin-book-image-delete" asp-route-bookId="@Model.BookId" asp-route-bookImageId="@bookImage.Id" id="book-image-form-@bookImage.Id"></form>
+                                    <button type="submit" form="book-image-form-@bookImage.Id">
+                                        <i class="las la-trash-alt text-secondary font-16"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table><!--end /table-->
+            </div><!--end /tableresponsive-->
+        </div><!--end card-body-->
+    </div><!--end card-->
+</div>

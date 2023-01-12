@@ -101,8 +101,6 @@ namespace DemoApplication.Areas.Admin.Controllers
 
             var book = AddBook();
 
-            await AddBookImagesAsync(book);
-
             await _dataContext.SaveChangesAsync();  
 
             return RedirectToRoute("admin-book-list");
@@ -147,24 +145,8 @@ namespace DemoApplication.Areas.Admin.Controllers
 
                 return book;
             }
-
-            async Task AddBookImagesAsync(Book book)
-            {
-                foreach (var image in model.Images!)
-                {
-                    var imageNameInSystem = await _fileService.UploadAsync(image, UploadDirectory.Book);
-
-                    var bookImage = new BookImage
-                    {
-                        Book = book,
-                        ImageName = image.FileName,
-                        ImageNameInFileSystem = imageNameInSystem
-                    };
-
-                    await _dataContext.AddAsync(bookImage);
-                }
-            }
         }
+
 
         #endregion
 
